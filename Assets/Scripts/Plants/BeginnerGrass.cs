@@ -9,11 +9,18 @@ public class BeginnerGrass : Plant {
     //protected Dictionary<Fruit, int> harvestAmount;
     //protected SpriteRenderer spriteRenderer;
     //protected List<Sprite> spriteList;
+    //public new static int plantID = 1;
+    //public new static int maxGrowthStage = 3;
+    //public new static string plantName = "Beginner Grass";
+    //public new static string description = "A common kind of grass that all fledgling Spirit Gardeners begin their training with.";
+    //public new static Dictionary<Essence, int> siphonAmount = new Dictionary<Essence, int>();
+    //public new static Dictionary<Fruit, int> harvestAmount = new Dictionary<Fruit, int>();
+    //public new static Sprite[] spriteList = Resources.LoadAll<Sprite>("Sprites/Plants/BeginnerGrass");
 
     private void Awake()
     {
-        plantID = 1;
         currentGrowthStage = 1;
+        plantID = 1;
         maxGrowthStage = 3;
         plantName = "Beginner Grass";
         description = "A common kind of grass that all fledgling Spirit Gardeners begin their training with.";
@@ -37,6 +44,7 @@ public class BeginnerGrass : Plant {
     public override void PlantStepUpdate()
     {
         base.PlantStepUpdate();
+        //currentGrowthStage = TryUpdate(currentGrowthStage, maxGrowthStage);
         if (currentGrowthStage == 2)
             spriteRenderer.sprite = spriteList[1];
         else if (currentGrowthStage == maxGrowthStage)

@@ -226,8 +226,11 @@
     <Compile Include="Assets\Scripts\Items\Fruits\BasicLeaf.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\Fruit.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\Items\Seeds\BasicSeed.cs" />
+    <Compile Include="Assets\Scripts\Items\Seeds\Seed.cs" />
     <Compile Include="Assets\Scripts\Plants\BeginnerGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\EmptyPlant.cs" />
+    <Compile Include="Assets\Scripts\Plants\FireGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\Plant.cs" />
     <Compile Include="Assets\Scripts\Tiles\FieldTile.cs" />
   </ItemGroup>

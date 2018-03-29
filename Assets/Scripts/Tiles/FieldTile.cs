@@ -31,6 +31,8 @@ public class FieldTile : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        BoardManager boardManager = gameObject.GetComponentInParent<BoardManager>();
+        boardManager.activeTile = this;
         print("Clicked FieldTile at " + transform.position);
         if(currentPlant is EmptyPlant)
         {
@@ -80,14 +82,24 @@ public class FieldTile : MonoBehaviour {
         return currentPlant.Harvest();
     }
 
-    public string checkPlant()
+    public string CheckPlant()
     {
         return currentPlant.Check();
     }
 
     public void RemovePlant()
     {
-        Destroy(currentPlant);
-        currentPlant = new EmptyPlant();
+        Destroy(currentPlant.gameObject);
+        currentPlant = new GameObject("Plant").AddComponent<EmptyPlant>();
+        currentPlant.transform.SetParent(transform);
+        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+    }
+
+    public void TempPlant()
+    {
+        Destroy(currentPlant.gameObject);
+        currentPlant = new GameObject("FirePlant").AddComponent<FireGrass>();
+        currentPlant.gameObject.transform.SetParent(transform);
+        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }
 }

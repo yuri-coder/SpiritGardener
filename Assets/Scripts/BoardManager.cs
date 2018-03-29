@@ -10,8 +10,10 @@ public class BoardManager : MonoBehaviour {
     public List<GameObject> tiles;
     public List<Sprite> fieldTileSprites;
     public Dictionary<Vector2, GameObject> gameBoard = new Dictionary<Vector2, GameObject>();
+    public FieldTile activeTile;
 	// Use this for initialization
 	void Start () {
+        activeTile = null;
         BoardSetup();
 	}
 	
@@ -54,13 +56,13 @@ public class BoardManager : MonoBehaviour {
         }
     }
 
-    public void StepUpdate()
-    {
-        foreach (KeyValuePair<Vector2, GameObject> tile in gameBoard)
-        {
-            // do something with entry.Value or entry.Key
-            //print("In BoardManager StepUpdate");
-            tile.Value.SendMessage("StepUpdate");
-        }
-    }
+    //public void StepUpdate()
+    //{
+    //    foreach (KeyValuePair<Vector2, GameObject> tile in gameBoard)
+    //    {
+    //        // do something with entry.Value or entry.Key
+    //        //print("In BoardManager StepUpdate");
+    //        tile.Value.SendMessage("StepUpdate");
+    //    }
+    //}
 }
