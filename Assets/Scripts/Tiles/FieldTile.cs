@@ -5,10 +5,19 @@ using UnityEngine;
 public class FieldTile : MonoBehaviour {
 
     public Plant currentPlant;
+    public BoxCollider2D boxCollider;
+    //public GameObject curentPlant;
+    //public SpriteRenderer spriteRenderer;
 
     void Awake()
     {
-        currentPlant = gameObject.AddComponent<EmptyPlant>();
+        //currentPlant = gameObject.AddComponent<BeginnerGrass>();
+        currentPlant = new GameObject("Plant").AddComponent<BeginnerGrass>();
+        //currentPlant.gameObject.AddComponent<SpriteRenderer>();
+        currentPlant.transform.SetParent(transform);
+        boxCollider = gameObject.AddComponent<BoxCollider2D>();
+        boxCollider.size = new Vector2(1, 1);
+        //spriteRenderer = GetComponent<SpriteRenderer>();
     }
     // Use this for initialization
     void Start () {
@@ -20,9 +29,13 @@ public class FieldTile : MonoBehaviour {
 		
 	}
 
+    private void OnMouseDown()
+    {
+        print("Clicked FieldTile at " + transform.position);
+    }
     public void StepUpdate()
     {
-        print("In FieldTile StepUpdate");
+        //print("In FieldTile StepUpdate");
         if (currentPlant)
         {
             currentPlant.PlantStepUpdate();

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
 
-    public int itemID;
-    public string itemName, description;
+    protected int itemID;
+    protected string itemName, description;
 	// Use this for initialization
 	void Start () {
 		

@@ -10,7 +10,10 @@ public class Plant : MonoBehaviour {
     protected int plantID, currentGrowthStage, maxGrowthStage;
     protected string plantName, description;
     protected Dictionary<Essence, int> siphonAmount;
-    protected Dictionary<Fruit, int> harvestAmount; 
+    protected Dictionary<Fruit, int> harvestAmount;
+    public SpriteRenderer spriteRenderer;
+    //public List<Sprite> spriteList;
+    public Sprite[] spriteList;
 
 
     // Use this for initialization
@@ -40,7 +43,7 @@ public class Plant : MonoBehaviour {
     }
     public virtual void PlantStepUpdate()
     {
-        print("In PlantStepUpdate");
+        //print("In PlantStepUpdate");
         if (currentGrowthStage < maxGrowthStage)
         {
             currentGrowthStage++;

@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Fruit : Item {
+public abstract class Essence : Item {
 
+    //protected int itemID;
+    //protected string itemName, description;
     //// Use this for initialization
-    //void Start()
-    //{
+    //void Start () {
 
     //}
 
     //// Update is called once per frame
-    //void Update()
-    //{
+    //void Update () {
 
     //}
 }

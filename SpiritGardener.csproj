@@ -220,12 +220,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoardManager.cs" />
-    <Compile Include="Assets\Scripts\EmptyPlant.cs" />
-    <Compile Include="Assets\Scripts\Essence.cs" />
-    <Compile Include="Assets\Scripts\FieldTile.cs" />
-    <Compile Include="Assets\Scripts\Fruit.cs" />
-    <Compile Include="Assets\Scripts\Item.cs" />
-    <Compile Include="Assets\Scripts\Plant.cs" />
+    <Compile Include="Assets\Scripts\ButtonManager.cs" />
+    <Compile Include="Assets\Scripts\Items\Essences\BasicEssence.cs" />
+    <Compile Include="Assets\Scripts\Items\Essences\Essence.cs" />
+    <Compile Include="Assets\Scripts\Items\Fruits\BasicLeaf.cs" />
+    <Compile Include="Assets\Scripts\Items\Fruits\Fruit.cs" />
+    <Compile Include="Assets\Scripts\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\Plants\BeginnerGrass.cs" />
+    <Compile Include="Assets\Scripts\Plants\EmptyPlant.cs" />
+    <Compile Include="Assets\Scripts\Plants\Plant.cs" />
+    <Compile Include="Assets\Scripts\Tiles\FieldTile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

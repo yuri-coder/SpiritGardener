@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4724218451873886}
   - component: {fileID: 212606182732122134}
   - component: {fileID: 114916816760553972}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: FieldTile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

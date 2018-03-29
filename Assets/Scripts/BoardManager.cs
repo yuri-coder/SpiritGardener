@@ -59,7 +59,7 @@ public class BoardManager : MonoBehaviour {
         foreach (KeyValuePair<Vector2, GameObject> tile in gameBoard)
         {
             // do something with entry.Value or entry.Key
-            print("In BoardManager StepUpdate");
+            //print("In BoardManager StepUpdate");
             tile.Value.SendMessage("StepUpdate");
         }
     }
