@@ -10,8 +10,8 @@ public class EmptyPlant : Plant {
         maxGrowthStage = 0;
         plantName = "Empty Plant";
         description = "Empty Plant";
-        siphonAmount = new Dictionary<Essence, int>();
-        harvestAmount = new Dictionary<Fruit, int>();
+        siphonAmount = new Dictionary<Item, int>();
+        harvestAmount = new Dictionary<Item, int>();
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteRenderer.sprite = null;
         //spriteRenderer.sortingOrder = 1;

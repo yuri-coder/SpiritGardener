@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item : MonoBehaviour {
+public class Item : MonoBehaviour{
 
-    public static int itemID;
-    public static string itemName, description;
+    public int itemID;
+    public string itemName, description;
 	// Use this for initialization
 	void Start () {
 		

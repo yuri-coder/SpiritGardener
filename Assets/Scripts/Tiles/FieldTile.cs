@@ -72,14 +72,18 @@ public class FieldTile : MonoBehaviour {
         }
     }
 
-    public Dictionary<Essence, int> SiphonPlant()
+    public Dictionary<Item, int> SiphonPlant()
     {
-        return currentPlant.Siphon();
+        Dictionary<Item, int> siphon = currentPlant.Siphon();
+        RemovePlant();
+        return siphon;
     }
 
-    public Dictionary<Fruit, int> HarvestFruit()
+    public Dictionary<Item, int> HarvestPlant()
     {
-        return currentPlant.Harvest();
+        Dictionary<Item, int> harvest = currentPlant.Harvest();
+        RemovePlant();
+        return harvest;
     }
 
     public string CheckPlant()

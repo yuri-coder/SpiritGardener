@@ -221,12 +221,16 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BoardManager.cs" />
     <Compile Include="Assets\Scripts\ButtonManager.cs" />
+    <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\BasicEssence.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\Essence.cs" />
+    <Compile Include="Assets\Scripts\Items\Essences\FireEssence.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\BasicLeaf.cs" />
+    <Compile Include="Assets\Scripts\Items\Fruits\FireLeaf.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\Fruit.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\BasicSeed.cs" />
+    <Compile Include="Assets\Scripts\Items\Seeds\FireGrassSeed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\Seed.cs" />
     <Compile Include="Assets\Scripts\Plants\BeginnerGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\EmptyPlant.cs" />

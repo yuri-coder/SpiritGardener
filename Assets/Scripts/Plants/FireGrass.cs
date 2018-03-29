@@ -19,12 +19,12 @@ public class FireGrass : Plant
         //spriteRenderer.sprite = spriteList[0];
         //spriteRenderer.sortingOrder = 1;
 
-        plantID = 1;
+        plantID = 2;
         maxGrowthStage = 5;
         plantName = "Fire Grass";
         description = "Its leaves are warm to the touch, and trace amounts of fire magic reside within it.";
-        siphonAmount = new Dictionary<Essence, int>();
-        harvestAmount = new Dictionary<Fruit, int>();
+        siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireEssence>(), 1 } };
+        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireLeaf>(), 1 } };
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         //spriteList = new List<Sprite>();
         //for (int i = 0; i <= 2; i++)

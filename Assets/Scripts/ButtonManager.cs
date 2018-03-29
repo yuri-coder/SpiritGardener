@@ -10,6 +10,7 @@ public class ButtonManager : MonoBehaviour {
     public GameObject removeButton;
     public GameObject siphonButton;
     public BoardManager boardManager;
+    public InventoryManager inventoryManager;
 
     public void EnableButton(GameObject button)
     {
@@ -52,6 +53,7 @@ public class ButtonManager : MonoBehaviour {
     public void HarvestPlant()
     {
         print("Harvest plant!");
+        inventoryManager.AddMultipleItems(boardManager.activeTile.HarvestPlant());
         boardManager.activeTile = null;
         ResetPlantButtons();
     }
@@ -59,6 +61,7 @@ public class ButtonManager : MonoBehaviour {
     public void SiphonPlant()
     {
         print("Siphon plant!");
+        inventoryManager.AddMultipleItems(boardManager.activeTile.SiphonPlant());
         boardManager.activeTile = null;
         ResetPlantButtons();
     }
@@ -87,7 +90,7 @@ public class ButtonManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         ResetPlantButtons();
-        boardManager = GameObject.Find("BoardManagerHolder").GetComponent<BoardManager>();
+        //boardManager = GameObject.Find("BoardManagerHolder").GetComponent<BoardManager>();
     }
 	
 	// Update is called once per frame

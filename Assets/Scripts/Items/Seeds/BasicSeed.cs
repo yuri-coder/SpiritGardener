@@ -7,15 +7,15 @@ public class BasicSeed : Seed
 
     //protected int itemID;
     //protected string itemName, description;
-    public new static int itemID = 201;
-    public new static string itemName = "Basic Seed";
-    public new static string description = "A small miracle of life! Grows into Beginner Grass.";
+    //public new static int itemID = 201;
+    //public new static string itemName = "Basic Seed";
+    //public new static string description = "A small miracle of life! Grows into Beginner Grass.";
 
     private void Awake()
     {
-        //itemID = 101;
-        //itemName = "Basic Essence";
-        //description = "An inert, easily gathered essence that all fledgling Spirit Gardeners train their siphoning with.";
+        itemID = 201;
+        itemName = "Basic Seed";
+        description = "A small miracle of life! Grows into Beginner Grass.";
     }
     // Use this for initialization
     void Start()

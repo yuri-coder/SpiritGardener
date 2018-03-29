@@ -5,8 +5,8 @@ using UnityEngine;
 public class Plant : MonoBehaviour {
     public int plantID, maxGrowthStage;
     public string plantName, description;
-    public Dictionary<Essence, int> siphonAmount;
-    public Dictionary<Fruit, int> harvestAmount;
+    public Dictionary<Item, int> siphonAmount;
+    public Dictionary<Item, int> harvestAmount;
 
     //public static int plantID, maxGrowthStage;
     //public static string plantName, description;
@@ -40,12 +40,12 @@ public class Plant : MonoBehaviour {
         return currentGrowthStage == maxGrowthStage;
     }
 
-    public virtual Dictionary<Essence, int> Siphon()
+    public virtual Dictionary<Item, int> Siphon()
     {
         return siphonAmount;
     }
 
-    public virtual Dictionary<Fruit, int> Harvest()
+    public virtual Dictionary<Item, int> Harvest()
     {
         return harvestAmount;
     }
