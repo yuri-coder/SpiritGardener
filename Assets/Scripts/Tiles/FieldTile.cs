@@ -32,6 +32,30 @@ public class FieldTile : MonoBehaviour {
     private void OnMouseDown()
     {
         print("Clicked FieldTile at " + transform.position);
+        if(currentPlant is EmptyPlant)
+        {
+            print("Empty plant!");
+            ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+            bm.ResetPlantButtons();
+            bm.EnableButton(bm.plantButton);
+        }
+        else if (currentPlant.IsFullyGrown())
+        {
+            print("Fully grown!");
+            ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+            bm.ResetPlantButtons();
+            bm.EnableButton(bm.harvestButton);
+            bm.EnableButton(bm.siphonButton);
+            bm.EnableButton(bm.checkButton);
+        }
+        else
+        {
+            print("Not fully grown!");
+            ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+            bm.ResetPlantButtons();
+            bm.EnableButton(bm.removeButton);
+            bm.EnableButton(bm.checkButton);
+        }
     }
     public void StepUpdate()
     {

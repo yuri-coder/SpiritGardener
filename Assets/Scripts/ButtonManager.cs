@@ -20,10 +20,24 @@ public class ButtonManager : MonoBehaviour {
         button.SetActive(false);
     }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+    public void ResetPlantButtons()
+    {
+        checkButton.SetActive(false);
+        harvestButton.SetActive(false);
+        plantButton.SetActive(false);
+        removeButton.SetActive(false);
+        siphonButton.SetActive(false);
+    }
+
+    private void Awake()
+    {
+        
+    }
+
+    // Use this for initialization
+    void Start () {
+        ResetPlantButtons();
+    }
 	
 	// Update is called once per frame
 	void Update () {

@@ -26,6 +26,10 @@ public class Plant : MonoBehaviour {
 		
 	}
 
+    public virtual bool IsFullyGrown()
+    {
+        return currentGrowthStage == maxGrowthStage;
+    }
 
     public virtual Dictionary<Essence, int> Siphon()
     {
