@@ -73,12 +73,25 @@ public class InventoryManager : MonoBehaviour {
             {
                 inventory[inventoryKey][entry.Key] += amount;
                 print("Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!");
+                SetItemAmount(itemToAdd, inventory[inventoryKey][entry.Key]);
                 return;
             }
         }
         inventory[inventoryKey].Add(itemToAdd, amount);
         CreateItem(inventoryKey, itemToAdd, amount);
         print("Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!");
+    }
+
+    private void SetItemAmount(Item item, int amount)
+    {
+        foreach (Transform itemContainer in GameObject.Find("General").transform)
+        {
+            if (itemContainer.GetChild(1).GetComponent<Text>().text.Equals(item.itemName))
+            {
+                itemContainer.GetChild(2).GetComponent<Text>().text = "x " + amount;
+                break;
+            }
+        }
     }
 
     public void AddMultipleItems(Dictionary<Item, int> items)
