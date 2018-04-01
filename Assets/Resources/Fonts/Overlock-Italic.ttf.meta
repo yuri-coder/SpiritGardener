@@ -1,0 +1,27 @@
+fileFormatVersion: 2
+guid: b1a3ef441f9bd9e4e8f6f91793e17aad
+timeCreated: 1522539087
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Overlock
+  fontNames:
+  - Overlock
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 02b73811e75db4d46bffc4dc18b38fd6, type: 3}
+  - {fileID: 12800000, guid: 2579ea9710e85d24cb94c0bd836aaa50, type: 3}
+  - {fileID: 12800000, guid: 43a75dab5c9f77d48b537845be223074, type: 3}
+  - {fileID: 12800000, guid: 7765758e4f4bfb64d81f92d1a6a7701e, type: 3}
+  - {fileID: 12800000, guid: a375b38f7c9bb1d41baab4fb7e6a3d0c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

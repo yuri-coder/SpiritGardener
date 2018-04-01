@@ -15,6 +15,9 @@ public class BasicEssence : Essence {
         itemID = 101;
         itemName = "Basic Essence";
         description = "An inert, easily gathered essence that all fledgling Spirit Gardeners train their siphoning with.";
+        //spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Essences/BasicEssence");
+        //spriteRenderer.sprite = spriteList[0];
     }
     // Use this for initialization
     void Start () {

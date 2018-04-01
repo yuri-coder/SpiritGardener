@@ -16,7 +16,9 @@ public class BasicLeaf : Fruit {
         itemID = 1;
         itemName = "Basic Leaf";
         description = "Soft green leaves harvested from Beginner Grass. Their abundance makes them invaluable for fledgling Spirit Gardeners training their harvesting.";
-
+        //spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Fruits/BasicLeaf");
+        //spriteRenderer.sprite = spriteList[0];
     }
     // Use this for initialization
     void Start () {

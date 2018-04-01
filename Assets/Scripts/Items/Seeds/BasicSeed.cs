@@ -16,6 +16,9 @@ public class BasicSeed : Seed
         itemID = 201;
         itemName = "Basic Seed";
         description = "A small miracle of life! Grows into Beginner Grass.";
+        //spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Seeds/BasicSeed");
+        //spriteRenderer.sprite = spriteList[0];
     }
     // Use this for initialization
     void Start()

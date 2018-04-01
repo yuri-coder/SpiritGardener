@@ -28,7 +28,7 @@ public class BoardManager : MonoBehaviour {
         {
             for(int y = 0; y < rows; y++)
             {
-                print("x: " + x + ", y: " + y);
+                //print("x: " + x + ", y: " + y);
                 Vector2 vlocation = new Vector2(x, y);
                 GameObject instance = Instantiate(tiles[0], vlocation, Quaternion.identity, transform) as GameObject;
                 Sprite sprite;

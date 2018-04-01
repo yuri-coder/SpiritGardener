@@ -47,7 +47,7 @@ public class ButtonManager : MonoBehaviour {
     {
         print("Check plant!");
         print(boardManager.activeTile.CheckPlant());
-        print(boardManager.activeTile.gameObject.transform.position);
+        //print(boardManager.activeTile.gameObject.transform.position);
     }
 
     public void HarvestPlant()

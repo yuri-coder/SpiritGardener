@@ -9,6 +9,9 @@ public class FireGrassSeed : Seed {
         itemID = 202;
         itemName = "Fire Grass Seed";
         description = "Small, warm, and smooth. Frequently used for popcorn during harvest festivals.";
+        //spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Seeds/FireGrassSeed");
+        //spriteRenderer.sprite = spriteList[0];
     }
     // Use this for initialization
     void Start () {

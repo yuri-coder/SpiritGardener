@@ -6,8 +6,10 @@ public class Item : MonoBehaviour{
 
     public int itemID;
     public string itemName, description;
-	// Use this for initialization
-	void Start () {
+    //public SpriteRenderer spriteRenderer;
+    public Sprite[] spriteList;
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
