@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -103,6 +104,15 @@ public class FieldTile : MonoBehaviour {
     {
         Destroy(currentPlant.gameObject);
         currentPlant = new GameObject("FirePlant").AddComponent<FireGrass>();
+        currentPlant.gameObject.transform.SetParent(transform);
+        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+    }
+
+    public void PlantFromString(string seedType)
+    {
+        Destroy(currentPlant.gameObject);
+        Type seed = Type.GetType(seedType);
+        currentPlant = (Plant) new GameObject(seedType).AddComponent(seed);
         currentPlant.gameObject.transform.SetParent(transform);
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }

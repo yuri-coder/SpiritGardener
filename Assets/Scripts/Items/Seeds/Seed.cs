@@ -4,6 +4,7 @@ using UnityEngine;
 
 public abstract class Seed : Item
 {
+    public string plantType;
 
     //protected int itemID;
     //protected string itemName, description;

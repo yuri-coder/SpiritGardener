@@ -12,6 +12,7 @@ public class FireGrassSeed : Seed {
         //spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Seeds/FireGrassSeed");
         //spriteRenderer.sprite = spriteList[0];
+        plantType = "FireGrass";
     }
     // Use this for initialization
     void Start () {

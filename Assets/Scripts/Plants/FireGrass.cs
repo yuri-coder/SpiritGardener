@@ -24,7 +24,7 @@ public class FireGrass : Plant
         plantName = "Fire Grass";
         description = "Its leaves are warm to the touch, and trace amounts of fire magic reside within it.";
         siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireEssence>(), 1 } };
-        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireLeaf>(), 1 } };
+        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireLeaf>(), 1 }, { gameObject.AddComponent<FireGrassSeed>(), 5 } };
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         //spriteList = new List<Sprite>();
         //for (int i = 0; i <= 2; i++)

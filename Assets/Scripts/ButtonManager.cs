@@ -9,6 +9,8 @@ public class ButtonManager : MonoBehaviour {
     public GameObject plantButton;
     public GameObject removeButton;
     public GameObject siphonButton;
+    public GameObject backButton;
+    public GameObject confirmButton;
     public BoardManager boardManager;
     public InventoryManager inventoryManager;
 
@@ -29,6 +31,8 @@ public class ButtonManager : MonoBehaviour {
         plantButton.SetActive(false);
         removeButton.SetActive(false);
         siphonButton.SetActive(false);
+        backButton.SetActive(false);
+        confirmButton.SetActive(false);
     }
 
     public void StepUpdate()
@@ -39,8 +43,7 @@ public class ButtonManager : MonoBehaviour {
             //print("In BoardManager StepUpdate");
             tile.Value.SendMessage("StepUpdate");
         }
-        ResetPlantButtons();
-        boardManager.activeTile = null;
+        Back();
     }
 
     public void CheckPlant()
@@ -54,32 +57,63 @@ public class ButtonManager : MonoBehaviour {
     {
         print("Harvest plant!");
         inventoryManager.AddMultipleItems(boardManager.activeTile.HarvestPlant());
-        boardManager.activeTile = null;
-        ResetPlantButtons();
+        Back();
     }
 
     public void SiphonPlant()
     {
         print("Siphon plant!");
         inventoryManager.AddMultipleItems(boardManager.activeTile.SiphonPlant());
-        boardManager.activeTile = null;
-        ResetPlantButtons();
+        Back();
     }
 
     public void RemovePlant()
     {
         print("Remove plant!");
         boardManager.activeTile.RemovePlant();
-        boardManager.activeTile = null;
-        ResetPlantButtons();
+        Back();
     }
 
     public void PlantSeed()
     {
-        print("Temp plant seed!");
-        boardManager.activeTile.TempPlant();
-        boardManager.activeTile = null;
+        plantButton.SetActive(false);
+        confirmButton.SetActive(true);
+        backButton.SetActive(true);
+        inventoryManager.DisplayByTag("Seeds");
+        //print("Previous Menu: " + inventoryManager.currentMenu);
+        inventoryManager.currentMenu = "PlantSeed";
+        //print("Current Menu: " + inventoryManager.currentMenu);
+
+        //boardManager.activeTile.TempPlant();
+        //boardManager.activeTile = null;
+        //ResetPlantButtons();
+    }
+
+
+    public void ConfirmSeed()
+    {
+        print("Menu: " + inventoryManager.currentMenu);
+        if (boardManager.activeSeed == "")
+        {
+            Back();
+        }
+        else
+        {
+            print("Active seed is " + boardManager.activeSeed);
+            inventoryManager.SubtractItem(inventoryManager.lastClickedItem, 1, "Seeds");
+            boardManager.activeTile.PlantFromString(boardManager.activeSeed);
+            Back();
+        }
+    }
+
+    public void Back()
+    {
+        inventoryManager.DisplayAllItems();
         ResetPlantButtons();
+        boardManager.activeTile = null;
+        boardManager.activeSeed = "";
+        inventoryManager.currentMenu = "";
+        inventoryManager.lastClickedItem = "";
     }
 
     private void Awake()

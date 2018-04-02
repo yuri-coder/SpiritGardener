@@ -18,6 +18,7 @@ public class BasicSeed : Seed
         description = "A small miracle of life! Grows into Beginner Grass.";
         //spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Seeds/BasicSeed");
+        plantType = "BeginnerGrass";
         //spriteRenderer.sprite = spriteList[0];
     }
     // Use this for initialization

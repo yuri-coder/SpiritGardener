@@ -11,6 +11,7 @@ public class BoardManager : MonoBehaviour {
     public List<Sprite> fieldTileSprites;
     public Dictionary<Vector2, GameObject> gameBoard = new Dictionary<Vector2, GameObject>();
     public FieldTile activeTile;
+    public string activeSeed;
 	// Use this for initialization
 	void Start () {
         activeTile = null;
