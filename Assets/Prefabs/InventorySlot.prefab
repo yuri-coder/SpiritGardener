@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 114224030740751982}
   - component: {fileID: 114224570767952480}
   - component: {fileID: 114658711224881176}
+  - component: {fileID: 114615655983003724}
   m_Layer: 5
   m_Name: InventorySlot
   m_TagString: Untagged
@@ -218,6 +219,17 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 0.75
   m_Text: Awesome Water Essency Essences
+--- !u!114 &114615655983003724
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1399643657916044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46f5fbdaaed8fd849aec905338d57d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114658711224881176
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -257,13 +269,12 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114242572650328640, guid: f179607d5fa7084428fa266c7c5b5467,
-          type: 2}
-        m_MethodName: ItemClick
-        m_Mode: 2
+      - m_Target: {fileID: 114615655983003724}
+        m_MethodName: Fire
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 1399643657916044}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

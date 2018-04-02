@@ -11,8 +11,12 @@ public class ButtonManager : MonoBehaviour {
     public GameObject siphonButton;
     public GameObject backButton;
     public GameObject confirmButton;
+    public GameObject inventoryButton;
     public BoardManager boardManager;
     public InventoryManager inventoryManager;
+
+    public GameObject inventoryMenu;
+    public GameObject inventoryScrollbar;
 
     public void EnableButton(GameObject button)
     {
@@ -33,6 +37,24 @@ public class ButtonManager : MonoBehaviour {
         siphonButton.SetActive(false);
         backButton.SetActive(false);
         confirmButton.SetActive(false);
+    }
+
+    public void ToggleInventory()
+    {
+        inventoryMenu.SetActive(!inventoryMenu.activeInHierarchy);
+        inventoryScrollbar.SetActive(!inventoryScrollbar.activeInHierarchy);
+    }
+
+    public void DisplayInventory()
+    {
+        inventoryMenu.SetActive(true);
+        inventoryScrollbar.SetActive(true);
+    }
+
+    public void HideInventory()
+    {
+        inventoryMenu.SetActive(false);
+        inventoryScrollbar.SetActive(false);
     }
 
     public void StepUpdate()
@@ -76,6 +98,7 @@ public class ButtonManager : MonoBehaviour {
 
     public void PlantSeed()
     {
+        DisplayInventory();
         plantButton.SetActive(false);
         confirmButton.SetActive(true);
         backButton.SetActive(true);

@@ -100,13 +100,13 @@ public class FieldTile : MonoBehaviour {
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }
 
-    public void TempPlant()
-    {
-        Destroy(currentPlant.gameObject);
-        currentPlant = new GameObject("FirePlant").AddComponent<FireGrass>();
-        currentPlant.gameObject.transform.SetParent(transform);
-        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-    }
+    //public void TempPlant()
+    //{
+    //    Destroy(currentPlant.gameObject);
+    //    currentPlant = new GameObject("FirePlant").AddComponent<FireGrass>();
+    //    currentPlant.gameObject.transform.SetParent(transform);
+    //    currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+    //}
 
     public void PlantFromString(string seedType)
     {

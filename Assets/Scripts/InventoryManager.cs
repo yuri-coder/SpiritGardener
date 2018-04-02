@@ -13,6 +13,8 @@ public class InventoryManager : MonoBehaviour {
     public string currentMenu;
     public string lastClickedItem;
 
+    public GameObject inventoryObject;
+
     public GameObject itemPrefab;
     // Use this for initialization
 
@@ -79,7 +81,8 @@ public class InventoryManager : MonoBehaviour {
     public void SetItemInfo(string category, GameObject item, Item itemType, int amount)
     {
         //item.transform.SetParent(GameObject.Find(category).transform);
-        item.transform.SetParent(GameObject.Find("General").transform);
+        item.transform.SetParent(inventoryObject.transform.Find("General").transform);
+        //item.transform.SetParent(GameObject.Find("General").transform);
         item.transform.localScale = new Vector3(1, 1, 1);
         item.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemType.spriteList[0];
         item.transform.GetChild(1).GetComponent<Text>().text = itemType.itemName;
@@ -157,7 +160,7 @@ public class InventoryManager : MonoBehaviour {
 
     private void SetItemAmount(Item item, int amount)
     {
-        foreach (Transform itemContainer in GameObject.Find("General").transform)
+        foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
             if (itemContainer.GetChild(1).GetComponent<Text>().text.Equals(item.itemName))
             {
@@ -169,7 +172,7 @@ public class InventoryManager : MonoBehaviour {
 
     private void SetItemAmount(string item, int amount)
     {
-        foreach (Transform itemContainer in GameObject.Find("General").transform)
+        foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
             if (itemContainer.GetChild(1).GetComponent<Text>().text.Equals(item))
             {
@@ -203,7 +206,7 @@ public class InventoryManager : MonoBehaviour {
 
     public void DisplayByTag(string tag)
     {
-        foreach (Transform itemContainer in GameObject.Find("General").transform)
+        foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
             itemContainer.gameObject.SetActive(itemContainer.gameObject.CompareTag(tag));
         }
@@ -212,7 +215,7 @@ public class InventoryManager : MonoBehaviour {
     public void DisplayAllItems()
     {
 
-        foreach (Transform itemContainer in GameObject.Find("General").transform)
+        foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
             itemContainer.gameObject.SetActive(true);
         }
