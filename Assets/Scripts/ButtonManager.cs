@@ -11,12 +11,17 @@ public class ButtonManager : MonoBehaviour {
     public GameObject siphonButton;
     public GameObject backButton;
     public GameObject confirmButton;
-    public GameObject inventoryButton;
+    
     public BoardManager boardManager;
     public InventoryManager inventoryManager;
 
+    public GameObject inventoryButton;
     public GameObject inventoryMenu;
     public GameObject inventoryScrollbar;
+
+    public GameObject exchangeButton;
+    public GameObject exchangeMenu;
+    public GameObject exchangeScrollbar;
 
     public void EnableButton(GameObject button)
     {
@@ -43,18 +48,48 @@ public class ButtonManager : MonoBehaviour {
     {
         inventoryMenu.SetActive(!inventoryMenu.activeInHierarchy);
         inventoryScrollbar.SetActive(!inventoryScrollbar.activeInHierarchy);
+        inventoryButton.SetActive(!inventoryButton.activeInHierarchy);
     }
 
     public void DisplayInventory()
     {
         inventoryMenu.SetActive(true);
         inventoryScrollbar.SetActive(true);
+        inventoryButton.SetActive(true);
     }
 
     public void HideInventory()
     {
         inventoryMenu.SetActive(false);
         inventoryScrollbar.SetActive(false);
+        inventoryButton.SetActive(false);
+    }
+
+    public void ToggleExchange()
+    {
+        exchangeMenu.SetActive(!exchangeMenu.activeInHierarchy);
+        exchangeScrollbar.SetActive(!exchangeScrollbar.activeInHierarchy);
+        exchangeButton.SetActive(!exchangeButton.activeInHierarchy);
+    }
+
+    public void ToggleInventoryExchange()
+    {
+        ToggleInventory();
+        ToggleExchange();
+    }
+
+    public void DisplayExchange()
+    {
+        exchangeMenu.SetActive(true);
+        exchangeScrollbar.SetActive(true);
+        exchangeButton.SetActive(true);
+    }
+
+    public void HideExchange()
+    {
+        exchangeMenu.SetActive(false);
+        exchangeScrollbar.SetActive(false);
+        exchangeButton.SetActive(false);
     }
 
     public void StepUpdate()
@@ -99,6 +134,7 @@ public class ButtonManager : MonoBehaviour {
     public void PlantSeed()
     {
         DisplayInventory();
+        HideExchange();
         plantButton.SetActive(false);
         confirmButton.SetActive(true);
         backButton.SetActive(true);
@@ -147,6 +183,8 @@ public class ButtonManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         ResetPlantButtons();
+        HideExchange();
+        DisplayInventory();
         //boardManager = GameObject.Find("BoardManagerHolder").GetComponent<BoardManager>();
     }
 	
