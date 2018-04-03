@@ -14,6 +14,7 @@ public class ItemSlot : MonoBehaviour {
 		
 	}
 
+    //Used when clicking on an item in the inventory
     public void Fire()
     {
         InventoryManager.Instance.ItemClick(gameObject);

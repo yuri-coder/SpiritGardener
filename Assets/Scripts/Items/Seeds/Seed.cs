@@ -4,19 +4,5 @@ using UnityEngine;
 
 public abstract class Seed : Item
 {
-    public string plantType;
-
-    //protected int itemID;
-    //protected string itemName, description;
-    //// Use this for initialization
-    //void Start()
-    //{
-
-    //}
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-
-    //}
+    public string plantType; //The type of plant this seed turns into when planted
 }

@@ -6,12 +6,24 @@ using UnityEngine.UI;
 
 public class BoardManager : MonoBehaviour {
 
+    /*****************
+     Board Constraints
+     ****************/
     public int rows, columns;
-    public List<GameObject> tiles;
-    public List<Sprite> fieldTileSprites;
-    public Dictionary<Vector2, GameObject> gameBoard = new Dictionary<Vector2, GameObject>();
+
+    /*****************
+     Other Board Setup
+     ****************/
+    public List<GameObject> tiles; //Prefab with FieldTile script
+    public List<Sprite> fieldTileSprites; //List of various fieldTiles
+    public Dictionary<Vector2, GameObject> gameBoard = new Dictionary<Vector2, GameObject>(); //Virtual representation of the GameBoard
+
+    /*****************
+     Navigation/History Related Variables
+     ****************/
     public FieldTile activeTile;
     public string activeSeed;
+
 	// Use this for initialization
 	void Start () {
         activeTile = null;
@@ -23,6 +35,7 @@ public class BoardManager : MonoBehaviour {
 		
 	}
 
+    //Sets up the GameBoard grid with empty FieldTiles
     void BoardSetup()
     {
         for(int x = 0; x < columns; x++)
@@ -35,19 +48,19 @@ public class BoardManager : MonoBehaviour {
                 Sprite sprite;
                 if (x == 0 && y == 0)
                     sprite = fieldTileSprites[6];
-                else if (x == rows - 1 && y == columns - 1)
+                else if (x == columns - 1 && y == rows - 1)
                     sprite = fieldTileSprites[2];
-                else if (x == 0 && y == columns - 1)
+                else if (x == 0 && y == rows - 1)
                     sprite = fieldTileSprites[0];
-                else if (x == rows - 1 && y == 0)
+                else if (x == columns - 1 && y == 0)
                     sprite = fieldTileSprites[8];
                 else if (y == 0)
                     sprite = fieldTileSprites[7];
-                else if (y == columns - 1)
+                else if (y == rows - 1)
                     sprite = fieldTileSprites[1];
                 else if (x == 0)
                     sprite = fieldTileSprites[3];
-                else if (x == rows - 1)
+                else if (x == columns - 1)
                     sprite = fieldTileSprites[5];
                 else
                     sprite = fieldTileSprites[4];
@@ -57,13 +70,4 @@ public class BoardManager : MonoBehaviour {
         }
     }
 
-    //public void StepUpdate()
-    //{
-    //    foreach (KeyValuePair<Vector2, GameObject> tile in gameBoard)
-    //    {
-    //        // do something with entry.Value or entry.Key
-    //        //print("In BoardManager StepUpdate");
-    //        tile.Value.SendMessage("StepUpdate");
-    //    }
-    //}
 }

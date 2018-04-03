@@ -5,28 +5,42 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour {
 
+    /*****************
+     Static InventoryManager Instance 
+     ****************/
     public static InventoryManager Instance;
+
+    /*****************
+     Game Managers
+     ****************/
     public BoardManager boardManager;
     public ButtonManager buttonManager;
-    //public Dictionary<Item, int> items;
+
+    /*****************
+     Virtual Player Inventory
+     ****************/
     public Dictionary<string, Dictionary<Item, int>> inventory;
+
+    /*****************
+     Navigation/History Related Variables
+     ****************/
     public string currentMenu;
     public string lastClickedItem;
 
-    public GameObject inventoryObject;
-
+    /*****************
+     Generic GameObject Prototypes and GameObject References
+     ****************/
+    public GameObject inventoryObject; //The entire Inventory GameObject (with General, etc.)
     public GameObject itemPrefab;
-    // Use this for initialization
 
+
+    // Use this for initialization
     void Awake()
     {
         Instance = this;    
     }
 
     void Start () {
-        //boardManager = GameObject.Find("BoardManagerHolder").GetComponent<BoardManager>();
-        //items = new Dictionary<Item, int>();
-        //CreateItem("General", "Fire Seeds", 132);
         inventory = new Dictionary<string, Dictionary<Item, int>>();
         inventory.Add("Fruits", new Dictionary<Item, int>());
         inventory.Add("Essences", new Dictionary<Item, int>());
@@ -40,7 +54,7 @@ public class InventoryManager : MonoBehaviour {
 	}
 
 
-
+    //When clicking on an item in the inventory, perform different actions based on the current menu
     public void ItemClick(GameObject clickedItem)
     {
         print(System.Environment.StackTrace);
@@ -55,34 +69,28 @@ public class InventoryManager : MonoBehaviour {
         switch (currentMenu)
         {
             case "PlantSeed":
-                //print("In Plant Seed");
                 print(inventoryItem.plantType);
                 boardManager.activeSeed = inventoryItem.plantType;
                 break;
 
             default:
-                //print("Not in plant seed");
                 print(inventoryItem.description);
                 break;
         }
     }
 
-    //private string checkCurrentMenu()
-    //{
-    //    return currentMenu;
-    //}
-
+    //Instantiate a GameObject from a generic itemPrefab, then call SetItemInfo
     public void CreateItem(string category, Item itemType, int amount)
     {
         GameObject item = (GameObject)Instantiate(itemPrefab);
         SetItemInfo(category, item, itemType, amount);
     }
 
+    //Set information about the item in the inventory slot GameObject
     public void SetItemInfo(string category, GameObject item, Item itemType, int amount)
     {
         //item.transform.SetParent(GameObject.Find(category).transform);
         item.transform.SetParent(inventoryObject.transform.Find("General").transform);
-        //item.transform.SetParent(GameObject.Find("General").transform);
         item.transform.localScale = new Vector3(1, 1, 1);
         item.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemType.spriteList[0];
         item.transform.GetChild(1).GetComponent<Text>().text = itemType.itemName;
@@ -91,27 +99,21 @@ public class InventoryManager : MonoBehaviour {
 
         InventoryItem inventoryItem = item.GetComponent<InventoryItem>();
         inventoryItem.description = itemType.description;
-
-        //item.AddComponent<InventoryItem>();
         
         switch (category)
         {
             case "Seeds":
-                print("In seeds");
                 Seed seedType = (Seed)itemType;
-                print("Initial seed type: " + seedType.plantType);
                 inventoryItem.plantType = seedType.plantType;
-                print("Set seed type: " + inventoryItem.plantType);
                 break;
             default:
-                print("Not a seed!");
                 break;
         }
     }
 
+    //Add x amount of an item to the inventory in the appropriate inventoryKey slot
     public void AddItem(Item itemToAdd, int amount, string inventoryKey)
     {
-        //print("Entered AddItem");
         if (inventoryKey.Equals("false"))
         {
             print("Only fruits, essences, and seeds can be stored in the inventory!");
@@ -133,11 +135,7 @@ public class InventoryManager : MonoBehaviour {
         print("Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!");
     }
 
-    public void SubtractItem(Item itemToSubtract, int amount, string inventoryKey)
-    {
-
-    }
-
+    //Subtract x amount of an item from the inventory based on a string of the name and a string of the appropriate inventory location
     public void SubtractItem(string itemToSubtract, int amount, string inventoryKey)
     {
         print("Entered Subtract Item: item to subtract is " + itemToSubtract);
@@ -158,6 +156,7 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    //Set the amount of an item based on an Item object and amount
     private void SetItemAmount(Item item, int amount)
     {
         foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
@@ -170,6 +169,7 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    //Set the amount of an item based on a string of the object's name and amount
     private void SetItemAmount(string item, int amount)
     {
         foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
@@ -182,9 +182,9 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    //Determine what type of item is being added and call AddItem with that item's type as the inventoryKey*
     public void AddMultipleItems(Dictionary<Item, int> items)
     {
-        //print("Entered AddMultipleItems");
         foreach(KeyValuePair<Item, int> item in items)
         {
             string inventoryKey = "false";
@@ -204,6 +204,7 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    //Display all items in the inventory that match a certain tag
     public void DisplayByTag(string tag)
     {
         foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
@@ -212,6 +213,7 @@ public class InventoryManager : MonoBehaviour {
         }
     }
 
+    //Display all items in the inventory 
     public void DisplayAllItems()
     {
 

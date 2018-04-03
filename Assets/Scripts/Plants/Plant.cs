@@ -7,21 +7,8 @@ public class Plant : MonoBehaviour {
     public string plantName, description;
     public Dictionary<Item, int> siphonAmount;
     public Dictionary<Item, int> harvestAmount;
-
-    //public static int plantID, maxGrowthStage;
-    //public static string plantName, description;
-    //public static Dictionary<Essence, int> siphonAmount;
-    //public static Dictionary<Fruit, int> harvestAmount;
-    //public static Sprite[] spriteList;
     protected int currentGrowthStage;
-
-    //protected int plantID, currentGrowthStage, maxGrowthStage;
-    //protected string plantName, description;
-    //protected Dictionary<Essence, int> siphonAmount;
-    //protected Dictionary<Fruit, int> harvestAmount;
-
     public SpriteRenderer spriteRenderer;
-    //public List<Sprite> spriteList;
     public Sprite[] spriteList;
 
 
@@ -35,25 +22,31 @@ public class Plant : MonoBehaviour {
 		
 	}
 
+    //Return if plant is fully grown
     public virtual bool IsFullyGrown()
     {
         return currentGrowthStage == maxGrowthStage;
     }
 
+    //Return the Items Siphoned and their amounts
     public virtual Dictionary<Item, int> Siphon()
     {
         return siphonAmount;
     }
 
+    //Return the Items Harvested and their amounts
     public virtual Dictionary<Item, int> Harvest()
     {
         return harvestAmount;
     }
 
+    //Return the current/max growth stage of the plant
     public virtual string Check()
     {
         return plantName + " - Growth Stage " + currentGrowthStage + "/" + maxGrowthStage;
     }
+
+    //Attempt to increase the growth stage of the plant
     public virtual void PlantStepUpdate()
     {
         if (currentGrowthStage < maxGrowthStage)

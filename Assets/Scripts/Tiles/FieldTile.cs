@@ -5,31 +5,23 @@ using UnityEngine;
 
 public class FieldTile : MonoBehaviour {
 
-    public Plant currentPlant;
+    public Plant currentPlant; 
     public BoxCollider2D boxCollider;
-    //public GameObject curentPlant;
-    //public SpriteRenderer spriteRenderer;
 
     void Awake()
     {
-        //currentPlant = gameObject.AddComponent<BeginnerGrass>();
         currentPlant = new GameObject("Plant").AddComponent<BeginnerGrass>();
-        //currentPlant.gameObject.AddComponent<SpriteRenderer>();
         currentPlant.transform.SetParent(transform);
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
         boxCollider.size = new Vector2(1, 1);
-        //spriteRenderer = GetComponent<SpriteRenderer>();
     }
     // Use this for initialization
-    void Start () {
-        //currentPlant = new EmptyPlant();
-	}
+    void Start () {}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update () {}
 
+    //Display information about the plant on click
     private void OnMouseDown()
     {
         BoardManager boardManager = gameObject.GetComponentInParent<BoardManager>();
@@ -60,9 +52,10 @@ public class FieldTile : MonoBehaviour {
             bm.EnableButton(bm.checkButton);
         }
     }
+
+    //Have the current plant perform its StepUpdate
     public void StepUpdate()
     {
-        //print("In FieldTile StepUpdate");
         if (currentPlant)
         {
             currentPlant.PlantStepUpdate();
@@ -73,6 +66,7 @@ public class FieldTile : MonoBehaviour {
         }
     }
 
+    //Siphon and Remove currentPlant
     public Dictionary<Item, int> SiphonPlant()
     {
         Dictionary<Item, int> siphon = currentPlant.Siphon();
@@ -80,6 +74,7 @@ public class FieldTile : MonoBehaviour {
         return siphon;
     }
 
+    //Harvest and Remove currentPlant
     public Dictionary<Item, int> HarvestPlant()
     {
         Dictionary<Item, int> harvest = currentPlant.Harvest();
@@ -87,11 +82,13 @@ public class FieldTile : MonoBehaviour {
         return harvest;
     }
 
+    //currentPlant.Check()
     public string CheckPlant()
     {
         return currentPlant.Check();
     }
 
+    //Remove the currentPlant gameObject and make a new EmptyPlant currentPlant gameObject 
     public void RemovePlant()
     {
         Destroy(currentPlant.gameObject);
@@ -100,14 +97,7 @@ public class FieldTile : MonoBehaviour {
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
     }
 
-    //public void TempPlant()
-    //{
-    //    Destroy(currentPlant.gameObject);
-    //    currentPlant = new GameObject("FirePlant").AddComponent<FireGrass>();
-    //    currentPlant.gameObject.transform.SetParent(transform);
-    //    currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
-    //}
-
+    //Remove the currentPlant gameObject and make a new currentPlant gameObject with the component of the string type provided
     public void PlantFromString(string seedType)
     {
         Destroy(currentPlant.gameObject);

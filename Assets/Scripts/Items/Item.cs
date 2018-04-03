@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour{
 
+    /*****************
+     Variables
+     ****************/
     public int itemID;
     public string itemName, description;
-    //public SpriteRenderer spriteRenderer;
     public Sprite[] spriteList;
+
     // Use this for initialization
     void Start () {
 		
@@ -18,6 +21,7 @@ public class Item : MonoBehaviour{
 		
 	}
 
+    //Return the item name and description together
     public virtual string Info()
     {
         return itemName + " - " + description;

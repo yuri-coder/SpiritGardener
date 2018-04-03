@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class InventoryItem : MonoBehaviour{
 
-    public string plantType;
-    public string description;
+    /*****************
+     Variables
+     ****************/
+    public string plantType; //The type of plant this item turns into if planted
+    public string description; //The itemDescription of the item
 
     void Start()
     {
-        //plantType = "";
-        //description = "";
     }
 
 }
