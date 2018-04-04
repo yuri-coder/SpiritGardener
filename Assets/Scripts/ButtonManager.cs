@@ -190,8 +190,9 @@ public class ButtonManager : MonoBehaviour {
         }
         else
         {
-            inventoryManager.SubtractItem(inventoryManager.lastClickedItem, 1, "Seeds");
-            boardManager.activeTile.PlantFromString(boardManager.activeSeed);
+            bool canPlant = inventoryManager.SubtractItem(inventoryManager.lastClickedItem, 1, "Seeds");
+            if(canPlant)
+                boardManager.activeTile.PlantFromString(boardManager.activeSeed);
             Back();
         }
     }

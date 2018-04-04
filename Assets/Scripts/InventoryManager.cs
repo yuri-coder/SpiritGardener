@@ -136,7 +136,7 @@ public class InventoryManager : MonoBehaviour {
     }
 
     //Subtract x amount of an item from the inventory based on a string of the name and a string of the appropriate inventory location
-    public void SubtractItem(string itemToSubtract, int amount, string inventoryKey)
+    public bool SubtractItem(string itemToSubtract, int amount, string inventoryKey)
     {
         print("Entered Subtract Item: item to subtract is " + itemToSubtract);
         foreach (KeyValuePair<Item, int> entry in inventory[inventoryKey])
@@ -146,14 +146,15 @@ public class InventoryManager : MonoBehaviour {
                 if(entry.Value <= 0)
                 {
                     print("0 " + entry.Key.itemName + " remaining!");
-                    return;
+                    return false;
                 }
                 inventory[inventoryKey][entry.Key] -= amount;
                 print("Subtracted " + itemToSubtract + " x" + amount + " from inventory[" + inventoryKey + "]!");
                 SetItemAmount(itemToSubtract, inventory[inventoryKey][entry.Key]);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     //Set the amount of an item based on an Item object and amount

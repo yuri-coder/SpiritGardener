@@ -2,33 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Trade {
+public class Trade : MonoBehaviour {
 
-    public Dictionary<Item, int> itemsNeeded;
-    public Dictionary<Item, int> itemsReceived;
-    public string tradeName;
+    public Dictionary<string, int> itemsNeeded;
+    public Dictionary<string, int> itemReceived;
+    public List<GameObject> requiredItems;
+    public GameObject confirmButton;
+    public GameObject requiredItemPrefab;
+    public bool displayingInfo;
 
-    public Trade(Dictionary<Item, int> needed, Dictionary<Item, int> received, string name)
+    // Use this for initialization
+    void Start()
     {
-        itemsNeeded = needed;
-        itemsReceived = received;
-        tradeName = name;
+
     }
 
-    public Trade(Dictionary<Item, int> needed, Dictionary<Item, int> received)
+    // Update is called once per frame
+    void Update()
     {
-        itemsNeeded = needed;
-        itemsReceived = received;
-        tradeName = "";
+
     }
 
-    //// Use this for initialization
-    //void Start () {
+    public void InitializeTrade(Dictionary<string, int> needed, Dictionary<string, int> received)
+    {
+        itemsNeeded = needed;
+        itemReceived = received;
+    }
 
-    //}
-
-    //// Update is called once per frame
-    //void Update () {
-
-    //}
+    public void Fire()
+    {
+        TradeManager.Instance.TradeClick(gameObject);
+    }
 }

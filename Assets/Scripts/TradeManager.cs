@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class TradeManager : MonoBehaviour {
 
-    public InventoryManager inventoryManager;
+    public static TradeManager Instance;
+    public GameObject tradeObject; //The entire Inventory GameObject (with General, etc.)
+    public GameObject tradePrefab;
 
-    public List<Trade> availableTrades;
+    private void Awake()
+    {
+        Instance = this;
+    }
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -17,4 +22,15 @@ public class TradeManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void SetupInitialTrades()
+    {
+
+    }
+
+    //When clicking on a trade to either display or hide it
+    public void TradeClick(GameObject clickedTrade)
+    {
+
+    }
 }
