@@ -27,6 +27,11 @@ public class Trade : MonoBehaviour {
     {
         itemsNeeded = needed;
         itemReceived = received;
+
+        /*Type seed = Type.GetType(seedType);
+        currentPlant = (Plant) new GameObject(seedType).AddComponent(seed);
+        currentPlant.gameObject.transform.SetParent(transform);
+        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);*/
     }
 
     public void Fire()

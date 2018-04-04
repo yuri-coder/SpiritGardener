@@ -15,7 +15,7 @@ public class TradeManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        SetupInitialTrades();
 	}
 	
 	// Update is called once per frame
@@ -25,12 +25,18 @@ public class TradeManager : MonoBehaviour {
 
     public void SetupInitialTrades()
     {
-
+        CreateTrade(new Dictionary<string, int>() { { "BeginnerLeaf", 1 }, { "BasicEssence", 2 } }, new Dictionary<string, int>() { { "FireSeed", 1} });
     }
 
     //When clicking on a trade to either display or hide it
     public void TradeClick(GameObject clickedTrade)
     {
 
+    }
+
+    public void CreateTrade(Dictionary<string, int> needed, Dictionary<string, int> received)
+    {
+        GameObject trade = Instantiate(tradePrefab);
+        trade.GetComponent<Trade>().InitializeTrade(needed, received);
     }
 }

@@ -44,6 +44,11 @@ public class ButtonManager : MonoBehaviour {
     public GameObject exchangeMenu;
     public GameObject exchangeScrollbar;
 
+    /*****************
+     Private UI Related Variables
+     ****************/
+    private bool forceInventoryExchangeDisplay; //if True, user can't toggle between Inventory and Exchange menus
+
     private void Awake()
     {
 
@@ -55,6 +60,7 @@ public class ButtonManager : MonoBehaviour {
         ResetPlantButtons();
         HideExchange();
         DisplayInventory();
+        forceInventoryExchangeDisplay = false;
     }
 
     // Update is called once per frame
@@ -123,10 +129,14 @@ public class ButtonManager : MonoBehaviour {
         exchangeScrollbar.SetActive(!exchangeScrollbar.activeInHierarchy);
         exchangeButton.SetActive(!exchangeButton.activeInHierarchy);
     }
+    //Only allow toggling between if not being forced to display Inventory/Exchange menu
     public void ToggleInventoryExchange()
     {
-        ToggleInventory();
-        ToggleExchange();
+        if(!forceInventoryExchangeDisplay)
+        {
+            ToggleInventory();
+            ToggleExchange();
+        }
     }
 
 
@@ -174,6 +184,7 @@ public class ButtonManager : MonoBehaviour {
     {
         DisplayInventory();
         HideExchange();
+        forceInventoryExchangeDisplay = true;
         plantButton.SetActive(false);
         confirmButton.SetActive(true);
         backButton.SetActive(true);
@@ -206,6 +217,7 @@ public class ButtonManager : MonoBehaviour {
         boardManager.activeSeed = "";
         inventoryManager.currentMenu = "";
         inventoryManager.lastClickedItem = "";
+        forceInventoryExchangeDisplay = false;
     }
 
 
