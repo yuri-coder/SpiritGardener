@@ -33,22 +33,15 @@ public class Trade : MonoBehaviour {
 
     public void InitializeTrade(Dictionary<string, int> needed, string receivedItem, int receivedAmount)
     {
-        print("Starting InitializeTrade");
         itemsNeeded = needed;
         itemReceived = receivedItem;
         amountReceived = receivedAmount;
         displayingInfo = false;
-        //canTrade = true;
-        //InventoryItem inventoryItem = gameObject.GetComponent<InventoryItem>();
         Type receivedItemType = Type.GetType(receivedItem);
 
-        //gameObject.AddComponent(receivedItemType);
-        //receivedItemComponent = (Item)gameObject.GetComponent(receivedItem);
         receivedItemComponent = (Item)new GameObject(receivedItem).AddComponent(receivedItemType);
         receivedItemComponent.gameObject.transform.SetParent(gameObject.transform);
 
-        //print(gameObject);
-        //currentPlant = (Plant) new GameObject(seedType).AddComponent(seed);
         gameObject.transform.GetChild(0).GetComponent<Text>().text = receivedItemComponent.itemName; //NameText
         gameObject.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = receivedItemComponent.spriteList[0]; //ItemContainer -> Image
         gameObject.transform.GetChild(2).GetComponent<Text>().text = "Show Info"; //ActionText
@@ -56,7 +49,6 @@ public class Trade : MonoBehaviour {
 
         foreach (KeyValuePair<string, int> req in needed)
         {
-            print("Inside initializetrade foreach loop");
             //Create a required item prefab instance
             GameObject requiredItem = Instantiate(requiredItemPrefab);
 
@@ -74,7 +66,6 @@ public class Trade : MonoBehaviour {
 
             requiredItem.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = requiredItemComponent.spriteList[0]; //ItemContainer -> Image
             requiredItem.transform.GetChild(1).GetComponent<Text>().text = requiredItemComponent.itemName; //NameText
-            //SetTradeMaterialAmount(requiredItem);
 
             requiredItem.transform.SetParent(TradeManager.Instance.tradeObject.transform);
             requiredItem.transform.localScale = new Vector3(1, 1, 1);
@@ -88,24 +79,6 @@ public class Trade : MonoBehaviour {
         confirmButton.GetComponent<ConfirmTrade>().associatedTradeObject = gameObject;
         confirmButton.SetActive(false);
         UpdateRequiredItems();
-
-        //foreach (KeyValuePair<string, int> entry in received)
-        //{
-        //    if(inventoryItem.description != "")
-        //    {
-        //        inventoryItem.description += "\n";
-        //    }
-        //    inventoryItem.description += entry.Key;
-        //}
-
-
-        //item.transform.GetChild(1).GetComponent<Text>().text = itemType.itemName;
-
-
-        /*Type seed = Type.GetType(seedType);
-        currentPlant = (Plant) new GameObject(seedType).AddComponent(seed);
-        currentPlant.gameObject.transform.SetParent(transform);
-        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);*/
     }
 
     public void UpdateRequiredItems()
@@ -181,7 +154,11 @@ public class Trade : MonoBehaviour {
                 TradeMaterial reqTM = req.GetComponent<TradeMaterial>();
                 InventoryManager.Instance.SubtractItem(reqTM.tradeItem, reqTM.neededAmount);
             }
-            UpdateRequiredItems();
+            foreach (GameObject trade in TradeManager.Instance.allTrades)
+            {
+                trade.GetComponent<Trade>().UpdateRequiredItems();
+            }
+            //UpdateRequiredItems();
         }
         else
         {

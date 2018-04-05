@@ -12,16 +12,12 @@ public class TradeManager : MonoBehaviour {
 
     private void Awake()
     {
-        //print("Starting trademanager awake");
         Instance = this;
-        //print("finishing trademanager awake");
     }
 
     // Use this for initialization
     void Start () {
-        //print("starting trademanager start");
         SetupInitialTrades();
-        //print("finishing trademanager start");
 	}
 	
 	// Update is called once per frame
@@ -77,18 +73,5 @@ public class TradeManager : MonoBehaviour {
             tradeComponent.confirmButton.SetActive(false);
             tradeComponent.ToggleInfo(false);
         }
-        //foreach(Transform tradeTransform in tradeObject.transform)
-        //{
-        //    print("In for each loop");
-        //    GameObject trade = tradeTransform.gameObject;
-        //    trade.SetActive(true);
-        //    Trade tradeComponent = trade.GetComponent<Trade>();
-        //    foreach (GameObject req in tradeComponent.requiredItems)
-        //    {
-        //        req.SetActive(false);
-        //    }
-        //    tradeComponent.confirmButton.SetActive(false);
-        //    tradeComponent.ToggleInfo(false);
-        //}
     }
 }

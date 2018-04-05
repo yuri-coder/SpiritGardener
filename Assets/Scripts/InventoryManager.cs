@@ -100,7 +100,6 @@ public class InventoryManager : MonoBehaviour {
     //Set information about the item in the inventory slot GameObject
     public void SetItemInfo(string category, GameObject item, Item itemType, int amount)
     {
-        //item.transform.SetParent(GameObject.Find(category).transform);
         item.transform.SetParent(inventoryObject.transform.Find("General").transform);
         item.transform.localScale = new Vector3(1, 1, 1);
         item.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = itemType.spriteList[0];
