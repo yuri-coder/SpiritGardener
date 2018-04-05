@@ -12,7 +12,7 @@ public class BeginnerGrass : Plant {
         plantName = "Beginner Grass";
         description = "A common kind of grass that all fledgling Spirit Gardeners begin their training with.";
         siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicEssence>(), 1 } };
-        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicLeaf>(), 1} , { gameObject.AddComponent<BasicSeed>(), 5 }, { gameObject.AddComponent<FireGrassSeed>(), 5 } };
+        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicLeaf>(), 1} , { gameObject.AddComponent<BasicSeed>(), 1 }};
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteList = Resources.LoadAll<Sprite>("Sprites/Plants/BeginnerGrass");
         spriteRenderer.sprite = spriteList[0];

@@ -110,12 +110,14 @@ public class ButtonManager : MonoBehaviour {
         exchangeMenu.SetActive(true);
         exchangeScrollbar.SetActive(true);
         exchangeButton.SetActive(true);
+        TradeManager.Instance.HideAllTradeInfo();
     }
     public void HideExchange()
     {
         exchangeMenu.SetActive(false);
         exchangeScrollbar.SetActive(false);
         exchangeButton.SetActive(false);
+        TradeManager.Instance.HideAllTradeInfo();
     }
     public void ToggleInventory()
     {
@@ -128,6 +130,7 @@ public class ButtonManager : MonoBehaviour {
         exchangeMenu.SetActive(!exchangeMenu.activeInHierarchy);
         exchangeScrollbar.SetActive(!exchangeScrollbar.activeInHierarchy);
         exchangeButton.SetActive(!exchangeButton.activeInHierarchy);
+        TradeManager.Instance.HideAllTradeInfo();
     }
     //Only allow toggling between if not being forced to display Inventory/Exchange menu
     public void ToggleInventoryExchange()
@@ -161,6 +164,8 @@ public class ButtonManager : MonoBehaviour {
     public void HarvestPlant()
     {
         print("Harvest plant!");
+        DisplayInventory();
+        HideExchange();
         inventoryManager.AddMultipleItems(boardManager.activeTile.HarvestPlant());
         Back();
     }
@@ -168,6 +173,8 @@ public class ButtonManager : MonoBehaviour {
     public void SiphonPlant()
     {
         print("Siphon plant!");
+        DisplayInventory();
+        HideExchange();
         inventoryManager.AddMultipleItems(boardManager.activeTile.SiphonPlant());
         Back();
     }

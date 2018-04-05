@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TradeMaterial : MonoBehaviour {
 
+    public Item tradeItem;
+    public bool enoughHeld;
+    public int neededAmount;
 	// Use this for initialization
 	void Start () {
 		

@@ -33,6 +33,12 @@ public class InventoryManager : MonoBehaviour {
     public GameObject inventoryObject; //The entire Inventory GameObject (with General, etc.)
     public GameObject itemPrefab;
 
+    /*****************
+     Other Useful Variables (colors, etc)
+     ****************/
+    public Color sufficientColor;
+    public Color insufficientColor;
+
 
     // Use this for initialization
     void Awake()
@@ -46,6 +52,8 @@ public class InventoryManager : MonoBehaviour {
         inventory.Add("Essences", new Dictionary<Item, int>());
         inventory.Add("Seeds", new Dictionary<Item, int>());
         currentMenu = "";
+        sufficientColor = new Color32(50, 50, 50, 255);
+        insufficientColor = new Color32(133, 6, 6, 255);
     }
 	
 	// Update is called once per frame
@@ -161,6 +169,31 @@ public class InventoryManager : MonoBehaviour {
         return false;
     }
 
+    public bool SubtractItem(Item itemToSubtract, int amount)
+    {
+        print("Entered Subtract Item: item to subtract is " + itemToSubtract.itemName);
+        string inventoryKey = GetItemKey(itemToSubtract);
+        if(inventoryKey != "false")
+        {
+            foreach (KeyValuePair<Item, int> entry in inventory[inventoryKey])
+            {
+                if (entry.Key.GetType() == itemToSubtract.GetType())
+                {
+                    inventory[inventoryKey][entry.Key] -= amount;
+                    print("Subtracted " + itemToSubtract.itemName + " x" + amount + " from inventory[" + inventoryKey + "]!");
+                    SetItemAmount(itemToSubtract, inventory[inventoryKey][entry.Key]);
+                    return true;
+                }
+            }
+            print("Item not found!");
+        }
+        else
+        {
+            print("No valid inventory key found!");
+        }
+        return false;
+    }
+
     //Set the amount of an item based on an Item object and amount
     private void SetItemAmount(Item item, int amount)
     {
@@ -169,6 +202,16 @@ public class InventoryManager : MonoBehaviour {
             if (itemContainer.GetChild(1).GetComponent<Text>().text.Equals(item.itemName))
             {
                 itemContainer.GetChild(2).GetComponent<Text>().text = "x " + amount;
+                if(amount <= 0)
+                {
+                    itemContainer.GetChild(1).GetComponent<Text>().color = insufficientColor;
+                    itemContainer.GetChild(2).GetComponent<Text>().color = insufficientColor;
+                }
+                else
+                {
+                    itemContainer.GetChild(1).GetComponent<Text>().color = sufficientColor;
+                    itemContainer.GetChild(2).GetComponent<Text>().color = sufficientColor;
+                }
                 break;
             }
         }
@@ -182,6 +225,16 @@ public class InventoryManager : MonoBehaviour {
             if (itemContainer.GetChild(1).GetComponent<Text>().text.Equals(item))
             {
                 itemContainer.GetChild(2).GetComponent<Text>().text = "x " + amount;
+                if (amount <= 0)
+                {
+                    itemContainer.GetChild(1).GetComponent<Text>().color = insufficientColor;
+                    itemContainer.GetChild(2).GetComponent<Text>().color = insufficientColor;
+                }
+                else
+                {
+                    itemContainer.GetChild(1).GetComponent<Text>().color = sufficientColor;
+                    itemContainer.GetChild(2).GetComponent<Text>().color = sufficientColor;
+                }
                 break;
             }
         }
@@ -226,5 +279,48 @@ public class InventoryManager : MonoBehaviour {
         {
             itemContainer.gameObject.SetActive(true);
         }
+    }
+
+    public int GetItemAmount(Item itemToSearchFor)
+    {
+        string inventoryKey = "";
+        if (itemToSearchFor is Fruit)
+            inventoryKey = "Fruits";
+        else if (itemToSearchFor is Essence)
+            inventoryKey = "Essences";
+        else if (itemToSearchFor is Seed)
+            inventoryKey = "Seeds";
+        else
+            return 0;
+
+        foreach (KeyValuePair<Item, int> item in inventory[inventoryKey])
+        {
+            if (item.Key.itemName.Equals(itemToSearchFor.itemName))
+            {
+                print("Item found!");
+                return item.Value;
+            }
+        }
+        print("Item not found!");
+        return 0;
+    }
+
+    //Return which inventory slot an item is in depending on its (parent) type
+   public string GetItemKey(Item itemToCheck)
+    {
+        string key = "false";
+        if (itemToCheck is Fruit)
+        {
+            key = "Fruits";
+        }
+        else if (itemToCheck is Essence)
+        {
+            key = "Essences";
+        }
+        else if (itemToCheck is Seed)
+        {
+            key = "Seeds";
+        }
+        return key;
     }
 }
