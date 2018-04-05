@@ -12,6 +12,7 @@ public class InventoryItem : MonoBehaviour{
 
     void Start()
     {
+        //description = "";
     }
 
 }

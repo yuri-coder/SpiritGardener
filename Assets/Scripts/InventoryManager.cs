@@ -57,9 +57,10 @@ public class InventoryManager : MonoBehaviour {
     //When clicking on an item in the inventory, perform different actions based on the current menu
     public void ItemClick(GameObject clickedItem)
     {
-        print(System.Environment.StackTrace);
+        //print(System.Environment.StackTrace);
         if (!clickedItem)
         {
+            print("GameObject clickedItem is null");
             return;
         }
 
@@ -78,6 +79,8 @@ public class InventoryManager : MonoBehaviour {
                 break;
         }
     }
+
+
 
     //Instantiate a GameObject from a generic itemPrefab, then call SetItemInfo
     public void CreateItem(string category, Item itemType, int amount)
@@ -99,6 +102,7 @@ public class InventoryManager : MonoBehaviour {
 
         InventoryItem inventoryItem = item.GetComponent<InventoryItem>();
         inventoryItem.description = itemType.description;
+        print(inventoryItem.description);
         
         switch (category)
         {

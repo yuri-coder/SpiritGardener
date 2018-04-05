@@ -241,6 +241,7 @@
     <Compile Include="Assets\Scripts\Tiles\FieldTile.cs" />
     <Compile Include="Assets\Scripts\Trade.cs" />
     <Compile Include="Assets\Scripts\TradeManager.cs" />
+    <Compile Include="Assets\Scripts\TradeMaterial.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

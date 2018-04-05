@@ -25,18 +25,24 @@ public class TradeManager : MonoBehaviour {
 
     public void SetupInitialTrades()
     {
-        CreateTrade(new Dictionary<string, int>() { { "BeginnerLeaf", 1 }, { "BasicEssence", 2 } }, new Dictionary<string, int>() { { "FireSeed", 1} });
+        CreateTrade(new Dictionary<string, int>() { { "BeginnerLeaf", 1 }, { "BasicEssence", 2 } }, "FireGrassSeed", 1);
     }
 
     //When clicking on a trade to either display or hide it
     public void TradeClick(GameObject clickedTrade)
     {
-
+        Trade trade = clickedTrade.GetComponent<Trade>();
+        foreach (GameObject req in trade.requiredItems){
+            req.SetActive(!req.activeInHierarchy);
+        }
+        trade.confirmButton.SetActive(!trade.confirmButton.activeInHierarchy);
+        trade.ToggleInfo();
     }
 
-    public void CreateTrade(Dictionary<string, int> needed, Dictionary<string, int> received)
+    public void CreateTrade(Dictionary<string, int> needed, string receivedName, int receivedAmount)
     {
         GameObject trade = Instantiate(tradePrefab);
-        trade.GetComponent<Trade>().InitializeTrade(needed, received);
+        trade.transform.SetParent(tradeObject.transform);
+        trade.GetComponent<Trade>().InitializeTrade(needed, receivedName, receivedAmount);
     }
 }
