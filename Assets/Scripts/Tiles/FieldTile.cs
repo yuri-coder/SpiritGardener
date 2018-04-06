@@ -25,32 +25,44 @@ public class FieldTile : MonoBehaviour {
     private void OnMouseDown()
     {
         BoardManager boardManager = gameObject.GetComponentInParent<BoardManager>();
-        boardManager.activeTile = this;
         print("Clicked FieldTile at " + transform.position);
-        if(currentPlant is EmptyPlant)
+
+        switch (InventoryManager.Instance.currentMenu)
         {
-            print("Empty plant!");
-            ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
-            bm.ResetPlantButtons();
-            bm.EnableButton(bm.plantButton);
-        }
-        else if (currentPlant.IsFullyGrown())
-        {
-            print("Fully grown!");
-            ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
-            bm.ResetPlantButtons();
-            bm.EnableButton(bm.harvestButton);
-            bm.EnableButton(bm.siphonButton);
-            bm.EnableButton(bm.checkButton);
-        }
-        else
-        {
-            print("Not fully grown!");
-            ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
-            bm.ResetPlantButtons();
-            bm.EnableButton(bm.removeButton);
-            bm.EnableButton(bm.checkButton);
-        }
+            case "PlantSeed":
+                if (currentPlant is EmptyPlant)
+                {
+                    boardManager.activeTile = this;
+                }
+                break;
+            default:
+                boardManager.activeTile = this;
+                if (currentPlant is EmptyPlant)
+                {
+                    print("Empty plant!");
+                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+                    bm.ResetPlantButtons();
+                    bm.EnableButton(bm.plantButton);
+                }
+                else if (currentPlant.IsFullyGrown())
+                {
+                    print("Fully grown!");
+                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+                    bm.ResetPlantButtons();
+                    bm.EnableButton(bm.harvestButton);
+                    bm.EnableButton(bm.siphonButton);
+                    bm.EnableButton(bm.checkButton);
+                }
+                else
+                {
+                    print("Not fully grown!");
+                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+                    bm.ResetPlantButtons();
+                    bm.EnableButton(bm.removeButton);
+                    bm.EnableButton(bm.checkButton);
+                }
+                break;
+        }     
     }
 
     //Have the current plant perform its StepUpdate
