@@ -11,8 +11,8 @@ public class FireGrass : Plant
         maxGrowthStage = 5;
         plantName = "Fire Grass";
         description = "Its leaves are warm to the touch, and trace amounts of fire magic reside within it.";
-        siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireEssence>(), 1 } };
-        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireLeaf>(), 1 }};
+        siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireEssence>(), 1 + Random.Range(0, 2)} };
+        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireLeaf>(), 1 + Random.Range(0, 2) }, { gameObject.AddComponent<FireGrassSeed>(), 0 +  InventoryManager.Instance.ChanceRoll(90, 100) * 1} };
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteList = Resources.LoadAll<Sprite>("Sprites/Plants/FireGrass");
         spriteRenderer.sprite = spriteList[0];

@@ -11,8 +11,8 @@ public class BeginnerGrass : Plant {
         maxGrowthStage = 3;
         plantName = "Beginner Grass";
         description = "A common kind of grass that all fledgling Spirit Gardeners begin their training with.";
-        siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicEssence>(), 1 } };
-        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicLeaf>(), 1} , { gameObject.AddComponent<BasicSeed>(), 1 }};
+        siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicEssence>(), 1 + Random.Range(0, 2)}, { gameObject.AddComponent<BasicSeed>(), 1 } };
+        harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicLeaf>(), 1 + Random.Range(0, 2)} , { gameObject.AddComponent<BasicSeed>(), 1 }};
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteList = Resources.LoadAll<Sprite>("Sprites/Plants/BeginnerGrass");
         spriteRenderer.sprite = spriteList[0];

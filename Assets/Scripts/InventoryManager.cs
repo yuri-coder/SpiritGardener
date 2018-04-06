@@ -38,6 +38,7 @@ public class InventoryManager : MonoBehaviour {
      ****************/
     public Color sufficientColor;
     public Color insufficientColor;
+    //public Random random;
 
 
     // Use this for initialization
@@ -54,6 +55,7 @@ public class InventoryManager : MonoBehaviour {
         currentMenu = "";
         sufficientColor = new Color32(50, 50, 50, 255);
         insufficientColor = new Color32(133, 6, 6, 255);
+        //random = new Random();
     }
 	
 	// Update is called once per frame
@@ -125,6 +127,10 @@ public class InventoryManager : MonoBehaviour {
     //Add x amount of an item to the inventory in the appropriate inventoryKey slot
     public void AddItem(Item itemToAdd, int amount, string inventoryKey)
     {
+        if(amount <= 0)
+        {
+            return;
+        }
         if (inventoryKey.Equals("false"))
         {
             print("Only fruits, essences, and seeds can be stored in the inventory!");
@@ -149,6 +155,11 @@ public class InventoryManager : MonoBehaviour {
     //Subtract x amount of an item from the inventory based on a string of the name and a string of the appropriate inventory location
     public bool SubtractItem(string itemToSubtract, int amount, string inventoryKey)
     {
+        if(amount <= 0)
+        {
+            print("Can't subtract 0 or less of an item!");
+            return false;
+        }
         print("Entered Subtract Item: item to subtract is " + itemToSubtract);
         foreach (KeyValuePair<Item, int> entry in inventory[inventoryKey])
         {
@@ -170,6 +181,11 @@ public class InventoryManager : MonoBehaviour {
 
     public bool SubtractItem(Item itemToSubtract, int amount)
     {
+        if (amount <= 0)
+        {
+            print("Can't subtract 0 or less of an item!");
+            return false;
+        }
         print("Entered Subtract Item: item to subtract is " + itemToSubtract.itemName);
         string inventoryKey = GetItemKey(itemToSubtract);
         if(inventoryKey != "false")
@@ -321,5 +337,11 @@ public class InventoryManager : MonoBehaviour {
             key = "Seeds";
         }
         return key;
+    }
+
+    public int ChanceRoll(int chanceGet, int chanceMax)
+    {
+        int result;
+        return result = (Random.Range(0, chanceMax) < chanceGet) ? 1 : 0; 
     }
 }
