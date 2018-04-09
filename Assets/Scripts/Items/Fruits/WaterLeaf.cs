@@ -8,6 +8,7 @@ public class WaterLeaf : Fruit
     private void Awake()
     {
         itemID = 3;
+        points = 5;
         itemName = "Water Leaf";
         description = "More often used for medicinal purposes as opposed to culinary ones. A staple for all first aid kits.";
         spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Fruits/WaterLeaf");

@@ -17,9 +17,11 @@ public class InventoryManager : MonoBehaviour {
     public ButtonManager buttonManager;
 
     /*****************
-     Virtual Player Inventory
+     Virtual Player Inventory/Stats
      ****************/
     public Dictionary<string, Dictionary<Item, int>> inventory;
+    public int points;
+    public int turns;
 
     /*****************
      Navigation/History Related Variables
@@ -38,7 +40,8 @@ public class InventoryManager : MonoBehaviour {
      ****************/
     public Color sufficientColor;
     public Color insufficientColor;
-    //public Random random;
+    public Text pointsText;
+    public Text turnsText;
 
 
     // Use this for initialization
@@ -55,7 +58,8 @@ public class InventoryManager : MonoBehaviour {
         currentMenu = "";
         sufficientColor = new Color32(50, 50, 50, 255);
         insufficientColor = new Color32(133, 6, 6, 255);
-        //random = new Random();
+        points = 0;
+        turns = 0;
     }
 	
 	// Update is called once per frame
@@ -143,13 +147,19 @@ public class InventoryManager : MonoBehaviour {
             {
                 inventory[inventoryKey][entry.Key] += amount;
                 print("Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!");
+                points += itemToAdd.points * amount;
                 SetItemAmount(itemToAdd, inventory[inventoryKey][entry.Key]);
+                print("Current Points: " + points);
+                UpdatePoints();
                 return;
             }
         }
         inventory[inventoryKey].Add(itemToAdd, amount);
         CreateItem(inventoryKey, itemToAdd, amount);
+        points += itemToAdd.points * amount;
         print("Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!");
+        print("Current Points: " + points);
+        UpdatePoints();
     }
 
     //Subtract x amount of an item from the inventory based on a string of the name and a string of the appropriate inventory location
@@ -343,5 +353,18 @@ public class InventoryManager : MonoBehaviour {
     {
         int result;
         return result = (Random.Range(0, chanceMax) < chanceGet) ? 1 : 0; 
+    }
+    
+    //Updates the points text displayed to the user
+    public void UpdatePoints()
+    {
+        pointsText.text = "Points: " + points;
+    }
+
+    //Increase turn counter by amt
+    public void IncreaseTurn(int amt)
+    {
+        turns += amt;
+        turnsText.text = "Turn: " + turns;
     }
 }

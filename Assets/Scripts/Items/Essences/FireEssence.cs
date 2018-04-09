@@ -7,6 +7,7 @@ public class FireEssence : Essence {
     private void Awake()
     {
         itemID = 102;
+        points = 2;
         itemName = "Fire Essence";
         description = "A small bundle of fiery energy. Said to be a source of heat and passion.";
         spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Essences/FireEssence");

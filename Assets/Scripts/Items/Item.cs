@@ -7,7 +7,7 @@ public class Item : MonoBehaviour{
     /*****************
      Variables
      ****************/
-    public int itemID;
+    public int itemID, points;
     public string itemName, description;
     public Sprite[] spriteList;
 

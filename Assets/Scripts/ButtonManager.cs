@@ -152,6 +152,7 @@ public class ButtonManager : MonoBehaviour {
         {
             tile.Value.SendMessage("StepUpdate");
         }
+        InventoryManager.Instance.IncreaseTurn(1);
         Back();
     }
 

@@ -8,6 +8,7 @@ public class WaterEssence : Essence
     private void Awake()
     {
         itemID = 103;
+        points = 3;
         itemName = "Water Essence";
         description = "A small bundle of water energy. Despite its name, it retains the flame-like appearance common to most common essences.";
         spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Essences/WaterEssence");
