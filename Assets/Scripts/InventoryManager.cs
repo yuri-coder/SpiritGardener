@@ -42,6 +42,7 @@ public class InventoryManager : MonoBehaviour {
     public Color insufficientColor;
     public Text pointsText;
     public Text turnsText;
+    public string dialogueMessage;
 
 
     // Use this for initialization
@@ -60,6 +61,7 @@ public class InventoryManager : MonoBehaviour {
         insufficientColor = new Color32(133, 6, 6, 255);
         points = 0;
         turns = 0;
+        dialogueMessage = "";
     }
 	
 	// Update is called once per frame
@@ -151,6 +153,9 @@ public class InventoryManager : MonoBehaviour {
                 SetItemAmount(itemToAdd, inventory[inventoryKey][entry.Key]);
                 print("Current Points: " + points);
                 UpdatePoints();
+
+                dialogueMessage += "Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!\n";
+
                 return;
             }
         }
@@ -159,6 +164,9 @@ public class InventoryManager : MonoBehaviour {
         points += itemToAdd.points * amount;
         print("Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!");
         print("Current Points: " + points);
+
+        dialogueMessage += "Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!\n";
+
         UpdatePoints();
     }
 
@@ -268,6 +276,7 @@ public class InventoryManager : MonoBehaviour {
     //Determine what type of item is being added and call AddItem with that item's type as the inventoryKey*
     public void AddMultipleItems(Dictionary<Item, int> items)
     {
+        dialogueMessage = "";
         foreach(KeyValuePair<Item, int> item in items)
         {
             string inventoryKey = "false";
@@ -285,6 +294,8 @@ public class InventoryManager : MonoBehaviour {
             }
             AddItem(item.Key, item.Value, inventoryKey);
         }
+        DialogueManager.Instance.DisplayMessage(dialogueMessage.Substring(0, dialogueMessage.Length - 1));
+        dialogueMessage = "";
     }
 
     //Display all items in the inventory that match a certain tag
