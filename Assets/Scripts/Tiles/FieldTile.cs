@@ -97,6 +97,7 @@ public class FieldTile : MonoBehaviour {
     //currentPlant.Check()
     public string CheckPlant()
     {
+        DialogueManager.Instance.DisplayMessage(currentPlant.Check());
         return currentPlant.Check();
     }
 
