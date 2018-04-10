@@ -43,7 +43,7 @@ public class Plant : MonoBehaviour {
     //Return the current/max growth stage of the plant
     public virtual string Check()
     {
-        return plantName + " - Growth Stage " + currentGrowthStage + "/" + maxGrowthStage;
+        return plantName + " - Growth Stage " + currentGrowthStage + "/" + maxGrowthStage + "\n" + description;
     }
 
     //Attempt to increase the growth stage of the plant

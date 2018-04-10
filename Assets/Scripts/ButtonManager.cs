@@ -168,7 +168,7 @@ public class ButtonManager : MonoBehaviour {
         DisplayInventory();
         HideExchange();
         inventoryManager.AddMultipleItems(boardManager.activeTile.HarvestPlant());
-        Back();
+        Reset();
     }
 
     public void SiphonPlant()
@@ -177,14 +177,15 @@ public class ButtonManager : MonoBehaviour {
         DisplayInventory();
         HideExchange();
         inventoryManager.AddMultipleItems(boardManager.activeTile.SiphonPlant());
-        Back();
+        Reset();
     }
 
     public void RemovePlant()
     {
         print("Remove plant!");
+        DialogueManager.Instance.DisplayMessage("Removed " + boardManager.activeTile.currentPlant.plantName + "!");
         boardManager.activeTile.RemovePlant();
-        Back();
+        Reset();
     }
 
     //Ready the PlantSeed menu
@@ -198,6 +199,7 @@ public class ButtonManager : MonoBehaviour {
         backButton.SetActive(true);
         inventoryManager.DisplayByTag("Seeds");
         inventoryManager.currentMenu = "PlantSeed";
+        DialogueManager.Instance.DisplayMessage("Which seed would you like to plant?");
     }
 
     //Confirms the previously selected seed and plants it in the active tile, subtracting 1 from the user's inventory
@@ -210,14 +212,22 @@ public class ButtonManager : MonoBehaviour {
         else
         {
             bool canPlant = inventoryManager.SubtractItem(inventoryManager.lastClickedItem, 1, "Seeds");
-            if(canPlant)
+            if (canPlant)
+            {
                 boardManager.activeTile.PlantFromString(boardManager.activeSeed);
-            Back();
+                DialogueManager.Instance.DisplayMessage("Planted " + inventoryManager.lastClickedItem + "!");
+                Reset();
+            }
+            else
+            {
+                DialogueManager.Instance.DisplayMessage("Not enough " + inventoryManager.lastClickedItem + "s!");
+                Reset();
+            }
         }
     }
 
     //Resets to the base "game state" with activeSeed, tile, menu, etc. set to defaults
-    public void Back()
+    public void Reset()
     {
         inventoryManager.DisplayAllItems();
         ResetPlantButtons();
@@ -226,6 +236,13 @@ public class ButtonManager : MonoBehaviour {
         inventoryManager.currentMenu = "";
         inventoryManager.lastClickedItem = "";
         forceInventoryExchangeDisplay = false;
+    }
+
+    //Resets dialogue display and then resets the rest
+    public void Back()
+    {
+        DialogueManager.Instance.DisplayMessage("");
+        Reset();
     }
 
 

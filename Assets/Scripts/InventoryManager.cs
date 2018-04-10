@@ -88,10 +88,12 @@ public class InventoryManager : MonoBehaviour {
             case "PlantSeed":
                 print(inventoryItem.plantType);
                 boardManager.activeSeed = inventoryItem.plantType;
+                DialogueManager.Instance.DisplayMessage("Plant " + lastClickedItem + "?");
                 break;
 
             default:
                 print(inventoryItem.description);
+                DialogueManager.Instance.DisplayMessage(inventoryItem.description);
                 break;
         }
     }
@@ -154,7 +156,7 @@ public class InventoryManager : MonoBehaviour {
                 print("Current Points: " + points);
                 UpdatePoints();
 
-                dialogueMessage += "Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!\n";
+                dialogueMessage += "Added " + itemToAdd.itemName + " x" + amount + " to inventory!\n";
 
                 return;
             }
@@ -165,7 +167,7 @@ public class InventoryManager : MonoBehaviour {
         print("Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!");
         print("Current Points: " + points);
 
-        dialogueMessage += "Added " + itemToAdd.itemName + " x" + amount + " to inventory[" + inventoryKey + "]!\n";
+        dialogueMessage += "Added " + itemToAdd.itemName + " x" + amount + " to inventory!\n";
 
         UpdatePoints();
     }
