@@ -7,6 +7,11 @@ using UnityEngine.UI;
 public class BoardManager : MonoBehaviour {
 
     /*****************
+     Static Board Instance
+     ****************/
+    public static BoardManager Instance;
+
+    /*****************
      Board Constraints
      ****************/
     public int rows, columns;
@@ -17,6 +22,7 @@ public class BoardManager : MonoBehaviour {
     public List<GameObject> tiles; //Prefab with FieldTile script
     public List<Sprite> fieldTileSprites; //List of various fieldTiles
     public Dictionary<Vector2, GameObject> gameBoard = new Dictionary<Vector2, GameObject>(); //Virtual representation of the GameBoard
+    public GameObject cursor; //Cursor showing where the user has clicked
 
     /*****************
      Navigation/History Related Variables
@@ -24,10 +30,16 @@ public class BoardManager : MonoBehaviour {
     public FieldTile activeTile;
     public string activeSeed;
 
-	// Use this for initialization
-	void Start () {
+    void Awake()
+    {
+        Instance = this;
+    }
+
+    // Use this for initialization
+    void Start () {
         activeTile = null;
         BoardSetup();
+        HideCursor();
 	}
 	
 	// Update is called once per frame
@@ -70,4 +82,20 @@ public class BoardManager : MonoBehaviour {
         }
     }
 
+    //Hides/Shows Cursor
+    public void ShowCursor()
+    {
+        cursor.SetActive(true);
+    }
+
+    public void HideCursor()
+    {
+        cursor.SetActive(false);
+    }
+
+    //Toggles Cursor
+    public void ToggleCursor()
+    {
+        cursor.SetActive(!cursor.activeInHierarchy);
+    }
 }

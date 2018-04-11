@@ -236,6 +236,7 @@ public class ButtonManager : MonoBehaviour {
         inventoryManager.currentMenu = "";
         inventoryManager.lastClickedItem = "";
         forceInventoryExchangeDisplay = false;
+        BoardManager.Instance.HideCursor();
     }
 
     //Resets dialogue display and then resets the rest

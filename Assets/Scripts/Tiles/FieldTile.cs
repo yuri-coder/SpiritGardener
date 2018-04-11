@@ -26,17 +26,20 @@ public class FieldTile : MonoBehaviour {
     {
         BoardManager boardManager = gameObject.GetComponentInParent<BoardManager>();
         print("Clicked FieldTile at " + transform.position);
-
         switch (InventoryManager.Instance.currentMenu)
         {
             case "PlantSeed":
                 if (currentPlant is EmptyPlant)
                 {
                     boardManager.activeTile = this;
+                    boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
+                    boardManager.ShowCursor();
                 }
                 break;
             default:
                 boardManager.activeTile = this;
+                boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
+                boardManager.ShowCursor();
                 if (currentPlant is EmptyPlant)
                 {
                     print("Empty plant!");
