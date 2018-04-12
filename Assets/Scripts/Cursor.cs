@@ -19,7 +19,6 @@ public class Cursor : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, newPosition, speed * Time.deltaTime);
-        //pMenu.transform.position = Vector3.MoveTowards(pMenu.transform.position, endPosition, speed * Time.deltaTime);    
     }
 
     public void MoveToLocation(Vector3 newLocation)

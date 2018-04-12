@@ -57,6 +57,7 @@ public class BoardManager : MonoBehaviour {
                 //print("x: " + x + ", y: " + y);
                 Vector2 vlocation = new Vector2(x, y);
                 GameObject instance = Instantiate(tiles[0], vlocation, Quaternion.identity, transform) as GameObject;
+                instance.transform.localPosition = vlocation;
                 Sprite sprite;
                 if (x == 0 && y == 0)
                     sprite = fieldTileSprites[6];

@@ -12,6 +12,7 @@ public class FieldTile : MonoBehaviour {
     {
         currentPlant = new GameObject("Plant").AddComponent<BeginnerGrass>();
         currentPlant.transform.SetParent(transform);
+        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
         boxCollider.size = new Vector2(1, 1);
     }
