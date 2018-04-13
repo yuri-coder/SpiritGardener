@@ -78,6 +78,7 @@ public class BoardManager : MonoBehaviour {
                 else
                     sprite = fieldTileSprites[4];
                 instance.GetComponent<SpriteRenderer>().sprite = sprite;
+                instance.GetComponent<SpriteRenderer>().sortingOrder = 1;
                 gameBoard.Add(vlocation, instance);
             }
         }

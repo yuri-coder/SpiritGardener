@@ -15,6 +15,7 @@ public class FieldTile : MonoBehaviour {
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
         boxCollider.size = new Vector2(1, 1);
+        currentPlant.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
     }
     // Use this for initialization
     void Start () {}
