@@ -2611,7 +2611,7 @@ MonoBehaviour:
   rows: 4
   columns: 4
   tiles:
-  - {fileID: 1035140140914726, guid: c5550b697f9a60f479bb4234cd61b703, type: 2}
+  - {fileID: 1988870196916014, guid: c5550b697f9a60f479bb4234cd61b703, type: 2}
   fieldTileSprites:
   - {fileID: 21300000, guid: a0381790b38c46b41843d785972d3818, type: 3}
   - {fileID: 21300000, guid: 48428c59aebf7744aa412ba97b427d6e, type: 3}

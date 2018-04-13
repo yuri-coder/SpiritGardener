@@ -7,6 +7,8 @@ public class FieldTile : MonoBehaviour {
 
     public Plant currentPlant; 
     public BoxCollider2D boxCollider;
+    public GameObject fieldTileAnimator;
+    private Animator animator;
 
     void Awake()
     {
@@ -16,6 +18,7 @@ public class FieldTile : MonoBehaviour {
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
         boxCollider.size = new Vector2(1, 1);
         currentPlant.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        animator = fieldTileAnimator.GetComponent<Animator>();
     }
     // Use this for initialization
     void Start () {}
@@ -87,6 +90,7 @@ public class FieldTile : MonoBehaviour {
     public Dictionary<Item, int> SiphonPlant()
     {
         Dictionary<Item, int> siphon = currentPlant.Siphon();
+        animator.SetTrigger("PlantSiphon");
         RemovePlant();
         return siphon;
     }
@@ -95,6 +99,7 @@ public class FieldTile : MonoBehaviour {
     public Dictionary<Item, int> HarvestPlant()
     {
         Dictionary<Item, int> harvest = currentPlant.Harvest();
+        animator.SetTrigger("PlantHarvest");
         RemovePlant();
         return harvest;
     }
@@ -123,5 +128,6 @@ public class FieldTile : MonoBehaviour {
         currentPlant = (Plant) new GameObject(seedType).AddComponent(seed);
         currentPlant.gameObject.transform.SetParent(transform);
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+        currentPlant.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
     }
 }
