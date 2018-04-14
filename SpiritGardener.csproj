@@ -246,6 +246,7 @@
     <Compile Include="Assets\Scripts\Plants\FireGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\Plant.cs" />
     <Compile Include="Assets\Scripts\Plants\WaterGrass.cs" />
+    <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Tiles\FieldTile.cs" />
     <Compile Include="Assets\Scripts\Trade.cs" />
     <Compile Include="Assets\Scripts\TradeManager.cs" />
