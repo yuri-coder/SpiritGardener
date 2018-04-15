@@ -232,6 +232,7 @@
     <Compile Include="Assets\Scripts\Items\Essences\FireEssence.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\WaterEssence.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\BasicLeaf.cs" />
+    <Compile Include="Assets\Scripts\Items\Fruits\CrystalBerry.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\FireLeaf.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\Fruit.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\WaterLeaf.cs" />

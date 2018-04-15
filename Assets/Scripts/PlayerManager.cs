@@ -40,6 +40,11 @@ public class PlayerManager : MonoBehaviour {
         }
     }
 
+    public void IncreaseMaxEnergy(int amount)
+    {
+        maxEnergy += amount;
+    }
+
     public int CurrentEnergy()
     {
         return curEnergy;
