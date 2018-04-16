@@ -230,6 +230,7 @@
     <Compile Include="Assets\Scripts\Items\Essences\BasicEssence.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\Essence.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\FireEssence.cs" />
+    <Compile Include="Assets\Scripts\Items\Essences\LightWisp.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\WaterEssence.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\BasicLeaf.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\CrystalBerry.cs" />
@@ -239,12 +240,14 @@
     <Compile Include="Assets\Scripts\Items\Item.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\BasicSeed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\FireGrassSeed.cs" />
+    <Compile Include="Assets\Scripts\Items\Seeds\GlassSeed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\Seed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\WaterGrassSeed.cs" />
     <Compile Include="Assets\Scripts\ItemSlot.cs" />
     <Compile Include="Assets\Scripts\Plants\BeginnerGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\EmptyPlant.cs" />
     <Compile Include="Assets\Scripts\Plants\FireGrass.cs" />
+    <Compile Include="Assets\Scripts\Plants\GlassBush.cs" />
     <Compile Include="Assets\Scripts\Plants\Plant.cs" />
     <Compile Include="Assets\Scripts\Plants\WaterGrass.cs" />
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
