@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
+    /*****************
+     Static PlayerManager Instance 
+     ****************/
+    public static PlayerManager Instance;
 
+    /*****************
+     Player Stats
+     ****************/
     public int maxEnergy;
     private int curEnergy;
 
     void Awake()
     {
-        
+        Instance = this;
     }
     // Use this for initialization
     void Start () {
-		
+        curEnergy = maxEnergy;
 	}
 	
 	// Update is called once per frame

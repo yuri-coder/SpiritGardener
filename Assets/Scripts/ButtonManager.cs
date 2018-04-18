@@ -153,30 +153,39 @@ public class ButtonManager : MonoBehaviour {
             tile.Value.SendMessage("StepUpdate");
         }
         InventoryManager.Instance.IncreaseTurn(1);
+        PlayerManager.Instance.RechargeEnergy(5);
         Back();
     }
 
     public void CheckPlant()
     {
         print("Check plant!");
+        print("Max Energy: " + PlayerManager.Instance.maxEnergy);
+        print("Current Energy: " + PlayerManager.Instance.CurrentEnergy());
         print(boardManager.activeTile.CheckPlant());
     }
 
     public void HarvestPlant()
     {
         print("Harvest plant!");
-        DisplayInventory();
-        HideExchange();
-        inventoryManager.AddMultipleItems(boardManager.activeTile.HarvestPlant());
+        if (PlayerManager.Instance.ConsumeEnergy(1))
+        {
+            DisplayInventory();
+            HideExchange();
+            inventoryManager.AddMultipleItems(boardManager.activeTile.HarvestPlant());
+        }
         Reset();
     }
 
     public void SiphonPlant()
     {
         print("Siphon plant!");
-        DisplayInventory();
-        HideExchange();
-        inventoryManager.AddMultipleItems(boardManager.activeTile.SiphonPlant());
+        if (PlayerManager.Instance.ConsumeEnergy(1))
+        {
+            DisplayInventory();
+            HideExchange();
+            inventoryManager.AddMultipleItems(boardManager.activeTile.SiphonPlant());
+        }
         Reset();
     }
 
@@ -209,6 +218,12 @@ public class ButtonManager : MonoBehaviour {
         {
             Back();
         }
+
+        else if (!PlayerManager.Instance.ConsumeEnergy(2))
+        {
+            Reset();
+        }
+
         else
         {
             bool canPlant = inventoryManager.SubtractItem(inventoryManager.lastClickedItem, 1, "Seeds");
