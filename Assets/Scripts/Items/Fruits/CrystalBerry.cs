@@ -8,7 +8,7 @@ public class CrystalBerry : Fruit
     private void Awake()
     {
         itemID = 4;
-        points = 4;
+        points = 5;
         itemName = "Crystal Berry";
         description = "Hard and inedible until cooked. It derives its name from its glass-like appearance.";
         spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Fruits/CrystalBerry");
