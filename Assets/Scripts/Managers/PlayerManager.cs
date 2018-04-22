@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour {
     public void RechargeEnergy(int amount)
     {
         curEnergy = (curEnergy + amount > maxEnergy) ? maxEnergy : curEnergy + amount;
+        EnergyManager.Instance.RechargeEnergy(amount);
     }
 
     public bool ConsumeEnergy(int amount)
@@ -39,6 +40,7 @@ public class PlayerManager : MonoBehaviour {
         if(curEnergy >= amount)
         {
             curEnergy -= amount;
+            EnergyManager.Instance.ConsumeEnergy(amount);
             return true;
         }
         else
@@ -51,6 +53,8 @@ public class PlayerManager : MonoBehaviour {
     public void IncreaseMaxEnergy(int amount)
     {
         maxEnergy += amount;
+        curEnergy += amount;
+        EnergyManager.Instance.AddEnergyOrb(amount);
     }
 
     public int CurrentEnergy()
