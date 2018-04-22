@@ -220,13 +220,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\AutoType.cs" />
-    <Compile Include="Assets\Scripts\BoardManager.cs" />
-    <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\ConfirmTrade.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
-    <Compile Include="Assets\Scripts\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Energy.cs" />
     <Compile Include="Assets\Scripts\InventoryItem.cs" />
-    <Compile Include="Assets\Scripts\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\BasicEssence.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\Essence.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\FireEssence.cs" />
@@ -247,6 +244,13 @@
     <Compile Include="Assets\Scripts\Items\Seeds\Seed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\WaterGrassSeed.cs" />
     <Compile Include="Assets\Scripts\ItemSlot.cs" />
+    <Compile Include="Assets\Scripts\Managers\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\ButtonManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\DialogueManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\InventoryManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\TradeManager.cs" />
     <Compile Include="Assets\Scripts\Plants\BeginnerGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\EmberFlower.cs" />
     <Compile Include="Assets\Scripts\Plants\EmptyPlant.cs" />
@@ -254,10 +258,8 @@
     <Compile Include="Assets\Scripts\Plants\GlassBush.cs" />
     <Compile Include="Assets\Scripts\Plants\Plant.cs" />
     <Compile Include="Assets\Scripts\Plants\WaterGrass.cs" />
-    <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\Tiles\FieldTile.cs" />
     <Compile Include="Assets\Scripts\Trade.cs" />
-    <Compile Include="Assets\Scripts\TradeManager.cs" />
     <Compile Include="Assets\Scripts\TradeMaterial.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

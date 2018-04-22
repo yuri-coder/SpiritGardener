@@ -364,8 +364,8 @@ public class InventoryManager : MonoBehaviour {
 
     public int ChanceRoll(int chanceGet, int chanceMax)
     {
-        int result;
-        return result = (Random.Range(0, chanceMax) < chanceGet) ? 1 : 0; 
+        //int result;
+        return (Random.Range(0, chanceMax) < chanceGet) ? 1 : 0; 
     }
     
     //Updates the points text displayed to the user

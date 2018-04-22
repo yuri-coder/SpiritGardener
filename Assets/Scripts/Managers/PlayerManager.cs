@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour {
     // Use this for initialization
     void Start () {
         curEnergy = maxEnergy;
+        EnergyManager.Instance.AddEnergyOrb(curEnergy);
 	}
 	
 	// Update is called once per frame

@@ -1,11 +1,15 @@
 fileFormatVersion: 2
-guid: 7e2038efe1294c544a17b3c67c709ddd
-timeCreated: 1524352153
+guid: 7d16280554f81ff46a963d887fa0a337
+timeCreated: 1524359933
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Energy_0
-    21300002: Energy_1
+    21300000: AnimatedEnergy_0
+    21300002: AnimatedEnergy_1
+    21300004: AnimatedEnergy_2
+    21300006: AnimatedEnergy_3
+    21300008: AnimatedEnergy_4
+    21300010: AnimatedEnergy_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -80,7 +84,35 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Energy_0
+      name: AnimatedEnergy_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AnimatedEnergy_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AnimatedEnergy_2
       rect:
         serializedVersion: 2
         x: 0
@@ -94,10 +126,38 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Energy_1
+      name: AnimatedEnergy_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AnimatedEnergy_4
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: AnimatedEnergy_5
+      rect:
+        serializedVersion: 2
+        x: 16
         y: 0
         width: 16
         height: 16
