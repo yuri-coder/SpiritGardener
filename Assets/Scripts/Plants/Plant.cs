@@ -46,6 +46,12 @@ public class Plant : MonoBehaviour {
         return plantName + " - Growth Stage " + currentGrowthStage + "/" + maxGrowthStage + "\n" + description;
     }
 
+    //Return the Items harvested when this plant is destroyed
+    public virtual Dictionary<Item, int> DestroyHarvest()
+    {
+        return new Dictionary<Item, int>() { };
+    }
+
     //Attempt to increase the growth stage of the plant
     public virtual void PlantStepUpdate()
     {

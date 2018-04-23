@@ -61,11 +61,17 @@ public class InventoryManager : MonoBehaviour {
         insufficientColor = new Color32(133, 6, 6, 255);
         points = 0;
         turns = 0;
+
+        GameObject temp = new GameObject();
+        AddMultipleItems(new Dictionary<Item, int>() { { temp.AddComponent<BasicSeed>(), 5 } });
+        Destroy(temp);
         dialogueMessage = "";
+        DialogueManager.Instance.DisplayMessage(dialogueMessage);
+
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		
 	}
 
@@ -296,8 +302,11 @@ public class InventoryManager : MonoBehaviour {
             }
             AddItem(item.Key, item.Value, inventoryKey);
         }
-        DialogueManager.Instance.DisplayMessage(dialogueMessage.Substring(0, dialogueMessage.Length - 1));
-        dialogueMessage = "";
+        if(dialogueMessage.Length > 0)
+        {
+            DialogueManager.Instance.DisplayMessage(dialogueMessage.Substring(0, dialogueMessage.Length - 1));
+            dialogueMessage = "";
+        }
     }
 
     //Display all items in the inventory that match a certain tag

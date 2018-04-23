@@ -12,7 +12,7 @@ public class FieldTile : MonoBehaviour {
 
     void Awake()
     {
-        currentPlant = new GameObject("Plant").AddComponent<BeginnerGrass>();
+        currentPlant = new GameObject("Plant").AddComponent<EmptyPlant>();
         currentPlant.transform.SetParent(transform);
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         boxCollider = gameObject.AddComponent<BoxCollider2D>();
@@ -114,6 +114,10 @@ public class FieldTile : MonoBehaviour {
     //Remove the currentPlant gameObject and make a new EmptyPlant currentPlant gameObject 
     public void RemovePlant()
     {
+       // if(currentPlant is BeginnerGrass)
+        //{
+            InventoryManager.Instance.AddMultipleItems(currentPlant.DestroyHarvest());
+        //}
         Destroy(currentPlant.gameObject);
         currentPlant = new GameObject("Plant").AddComponent<EmptyPlant>();
         currentPlant.transform.SetParent(transform);

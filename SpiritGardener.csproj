@@ -244,6 +244,7 @@
     <Compile Include="Assets\Scripts\Items\Seeds\Seed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\WaterGrassSeed.cs" />
     <Compile Include="Assets\Scripts\ItemSlot.cs" />
+    <Compile Include="Assets\Scripts\Managers\AchievementManager.cs" />
     <Compile Include="Assets\Scripts\Managers\BoardManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\Managers\DialogueManager.cs" />
