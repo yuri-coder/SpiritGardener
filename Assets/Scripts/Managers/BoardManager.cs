@@ -44,12 +44,17 @@ public class BoardManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            AchievementManager.Instance.RestartGame();
+            RestartGame();
+        }
+    }
 
     //Sets up the GameBoard grid with empty FieldTiles
     void BoardSetup()
     {
+        gameBoard.Clear();
         for(int x = 0; x < columns; x++)
         {
             for(int y = 0; y < rows; y++)
@@ -99,5 +104,18 @@ public class BoardManager : MonoBehaviour {
     public void ToggleCursor()
     {
         cursor.SetActive(!cursor.activeInHierarchy);
+    }
+
+    //Restarts the game
+    public void RestartGame()
+    {
+        foreach(Transform child in gameObject.transform)
+        {
+            Destroy(child.gameObject);
+        }
+        InventoryManager.Instance.RestartGame();
+        PlayerManager.Instance.RestartGame();
+        AchievementManager.Instance.RestartGame();
+        Start();
     }
 }

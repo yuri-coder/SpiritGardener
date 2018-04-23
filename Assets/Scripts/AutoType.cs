@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AutoType : MonoBehaviour
 {
 
-    public float letterPause = 0.01f;
+    public float letterPause;
     public Text displayText;
 
     // Use this for initialization
@@ -22,8 +22,8 @@ public class AutoType : MonoBehaviour
         {
             displayText.text += letter;
 
-            yield return 0;
-            //yield return new WaitForSeconds(letterPause);
+            //yield return 0;
+            yield return new WaitForSeconds(letterPause);
         }
     }
 }

@@ -146,9 +146,8 @@ public class Trade : MonoBehaviour {
     {
         if (canTrade)
         {
-            print("In can trade");
+            AchievementManager.Instance.exchangeAmount += 1;
             InventoryManager.Instance.AddMultipleItems(new Dictionary<Item, int>() { { receivedItemComponent, amountReceived } });
-            print("Before foreach loop");
             foreach (GameObject req in requiredItems)
             {
                 TradeMaterial reqTM = req.GetComponent<TradeMaterial>();
@@ -158,11 +157,10 @@ public class Trade : MonoBehaviour {
             {
                 trade.GetComponent<Trade>().UpdateRequiredItems();
             }
-            //UpdateRequiredItems();
         }
         else
         {
-            print("Not enough materials!");
+            DialogueManager.Instance.DisplayMessage("Not enough materials!");
         }
     }
 }

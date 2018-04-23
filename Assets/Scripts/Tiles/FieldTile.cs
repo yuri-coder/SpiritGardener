@@ -89,6 +89,7 @@ public class FieldTile : MonoBehaviour {
     //Siphon and Remove currentPlant
     public Dictionary<Item, int> SiphonPlant()
     {
+        AchievementManager.Instance.siphonedAmount += 1;
         Dictionary<Item, int> siphon = currentPlant.Siphon();
         animator.SetTrigger("PlantSiphon");
         RemovePlant();
@@ -98,6 +99,7 @@ public class FieldTile : MonoBehaviour {
     //Harvest and Remove currentPlant
     public Dictionary<Item, int> HarvestPlant()
     {
+        AchievementManager.Instance.harvestedAmount += 1;
         Dictionary<Item, int> harvest = currentPlant.Harvest();
         animator.SetTrigger("PlantHarvest");
         RemovePlant();
@@ -127,6 +129,10 @@ public class FieldTile : MonoBehaviour {
     //Remove the currentPlant gameObject and make a new currentPlant gameObject with the component of the string type provided
     public void PlantFromString(string seedType)
     {
+        if (AchievementManager.Instance.plantsDiscovered.Add(seedType))
+        {
+            InventoryManager.Instance.dialogueMessage = "Discovered a new plant!\n";
+        }
         Destroy(currentPlant.gameObject);
         Type seed = Type.GetType(seedType);
         currentPlant = (Plant) new GameObject(seedType).AddComponent(seed);

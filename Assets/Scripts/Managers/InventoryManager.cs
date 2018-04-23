@@ -43,6 +43,7 @@ public class InventoryManager : MonoBehaviour {
     public Text pointsText;
     public Text turnsText;
     public string dialogueMessage;
+    public int neededPoints;
 
 
     // Use this for initialization
@@ -57,10 +58,15 @@ public class InventoryManager : MonoBehaviour {
         inventory.Add("Essences", new Dictionary<Item, int>());
         inventory.Add("Seeds", new Dictionary<Item, int>());
         currentMenu = "";
+        lastClickedItem = "";
         sufficientColor = new Color32(50, 50, 50, 255);
         insufficientColor = new Color32(133, 6, 6, 255);
         points = 0;
+        //neededPoints = 10;
         turns = 0;
+
+        UpdatePoints();
+        IncreaseTurn(turns);
 
         GameObject temp = new GameObject();
         AddMultipleItems(new Dictionary<Item, int>() { { temp.AddComponent<BasicSeed>(), 5 } });
@@ -68,6 +74,20 @@ public class InventoryManager : MonoBehaviour {
         dialogueMessage = "";
         DialogueManager.Instance.DisplayMessage(dialogueMessage);
 
+    }
+
+    //When restarting the game
+    public void RestartGame()
+    {
+        inventory.Clear();
+        buttonManager.DisplayInventory();
+        buttonManager.HideExchange();
+        buttonManager.Reset();
+        foreach (Transform child in inventoryObject.transform.Find("General").transform)
+        {
+            Destroy(child.gameObject);
+        }
+        Start();
     }
 
     // Update is called once per frame
@@ -381,6 +401,10 @@ public class InventoryManager : MonoBehaviour {
     public void UpdatePoints()
     {
         pointsText.text = "Points: " + points;
+        if(points >= neededPoints)
+        {
+            AchievementManager.Instance.EndGame();
+        }
     }
 
     //Increase turn counter by amt

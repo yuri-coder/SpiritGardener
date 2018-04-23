@@ -29,6 +29,14 @@ public class PlayerManager : MonoBehaviour {
 		
 	}
 
+    //When restarting the game
+    public void RestartGame()
+    {
+        maxEnergy = 5;
+        EnergyManager.Instance.RestartGame();
+        Start();
+    }
+
     public void RechargeEnergy(int amount)
     {
         curEnergy = (curEnergy + amount > maxEnergy) ? maxEnergy : curEnergy + amount;

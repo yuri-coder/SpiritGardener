@@ -26,6 +26,16 @@ public class EnergyManager : MonoBehaviour {
 		
 	}
 
+    //When restarting the game
+    public void RestartGame()
+    {
+        energyOrbs.Clear();
+        foreach(Transform child in this.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
     public void AddEnergyOrb(int amt)
     {
         for(int i = 0; i < amt; i++)

@@ -5,6 +5,11 @@ using UnityEngine;
 public class ButtonManager : MonoBehaviour {
 
     /*****************
+     Static ButtonManager Instance
+     ****************/
+    public static ButtonManager Instance;
+
+    /*****************
      Game Managers
      ****************/
     public BoardManager boardManager;
@@ -51,7 +56,7 @@ public class ButtonManager : MonoBehaviour {
 
     private void Awake()
     {
-
+        Instance = this;
     }
 
     // Use this for initialization
@@ -229,8 +234,9 @@ public class ButtonManager : MonoBehaviour {
             bool canPlant = inventoryManager.SubtractItem(inventoryManager.lastClickedItem, 1, "Seeds");
             if (canPlant)
             {
+                inventoryManager.dialogueMessage = "";
                 boardManager.activeTile.PlantFromString(boardManager.activeSeed);
-                DialogueManager.Instance.DisplayMessage("Planted " + inventoryManager.lastClickedItem + "!");
+                DialogueManager.Instance.DisplayMessage(inventoryManager.dialogueMessage + "Planted " + inventoryManager.lastClickedItem + "!");
                 Reset();
             }
             else
