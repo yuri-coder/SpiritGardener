@@ -22,10 +22,12 @@ public class GlassBush : Plant
     public override void PlantStepUpdate()
     {
         base.PlantStepUpdate();
-        if (currentGrowthStage == 5)
+        if (currentGrowthStage == 4)
             spriteRenderer.sprite = spriteList[1];
-        else if (currentGrowthStage == maxGrowthStage)
+        else if (currentGrowthStage == 7)
             spriteRenderer.sprite = spriteList[2];
+        else if (currentGrowthStage == maxGrowthStage)
+            spriteRenderer.sprite = spriteList[3];
     }
 
     // Use this for initialization
