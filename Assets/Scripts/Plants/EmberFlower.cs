@@ -10,7 +10,7 @@ public class EmberFlower : Plant
         plantID = 5;
         maxGrowthStage = 3;
         plantName = "Ember Flower";
-        description = "In lieu of barbs or thorns, the entire plant is poisonous, and ingesting one can lead to severe dehydration and nausea. Despite this defense mechanism, the plant is slowly becoming endangered because of how rarely they produce seeds.";
+        description = "In lieu of barbs or thorns, the entire plant is poisonous, and ingesting one can lead to severe dehydration and nausea.";
         siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<FireEssence>(), 0 + Random.Range(0, 2) }, { gameObject.AddComponent<SmokeWisp>(), 0 + Random.Range(0, 2) } };
         harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<SmoulderingPetal>(), 2 + Random.Range(0, 2) }, { gameObject.AddComponent<EmberSeed>(), 0 + InventoryManager.Instance.ChanceRoll(10, 100) * 1 } };
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();

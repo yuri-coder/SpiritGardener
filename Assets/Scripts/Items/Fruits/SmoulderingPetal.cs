@@ -10,7 +10,7 @@ public class SmoulderingPetal : Fruit
         itemID = 5;
         points = 4;
         itemName = "Smouldering Petal";
-        description = "Over time, the vibrant reds fade to black like the rest of the petal. The petals are occasionally scattered during funeral processions.";
+        description = "Over time, the vibrant reds fade to black like the rest of the plant. The petals are occasionally scattered during funeral processions.";
         spriteList = Resources.LoadAll<Sprite>("Sprites/Items/Fruits/SmoulderingPetal");
     }
     // Use this for initialization

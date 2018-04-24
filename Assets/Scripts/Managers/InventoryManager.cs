@@ -391,6 +391,7 @@ public class InventoryManager : MonoBehaviour {
         return key;
     }
 
+    //Returns 1 if the roll succeeds, 0 otherwise
     public int ChanceRoll(int chanceGet, int chanceMax)
     {
         //int result;
@@ -412,5 +413,23 @@ public class InventoryManager : MonoBehaviour {
     {
         turns += amt;
         turnsText.text = "Turn: " + turns;
+    }
+
+    //Returns a Dictionary containing the Item + Amount from a shared drop roll.
+    //@Param: Dictionary<Item, List<int>> = { Item : [weightedChance, amountReceived] }; totalChance = combined weighted drop rate for all items
+    public Dictionary<Item, int> SharedChanceRoll(Dictionary<Item, List<int>> drops, int totalChance)
+    {
+        Dictionary<Item, int> gainedDrop = new Dictionary<Item, int>();
+
+        /*
+         * rng from totalChance;
+         * for all items
+         * rng -= item.amt
+         * if rng < 0
+         *  return item
+         * LW(10, 3), BE (80, 4), Seed (10, 1) -> Wisp: < 10 (0 - 9), BE: < 90 (10 - 89), Seed: < 100 (90 - 99)
+         */
+
+        return gainedDrop;
     }
 }
