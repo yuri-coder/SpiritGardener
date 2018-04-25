@@ -86,7 +86,13 @@ public class Trade : MonoBehaviour {
         bool tradeable = true;
         foreach(GameObject reqItem in requiredItems)
         {
-            tradeable = SetTradeMaterialAmount(reqItem);
+            if (tradeable) {
+               tradeable = SetTradeMaterialAmount(reqItem);
+            }
+            else
+            {
+                SetTradeMaterialAmount(reqItem);
+            }
         }
         canTrade = tradeable;
     }
