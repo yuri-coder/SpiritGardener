@@ -101,6 +101,7 @@ public class ButtonManager : MonoBehaviour {
     public void DisplayInventory()
     {
         inventoryMenu.SetActive(true);
+        //inventoryMenu.transform.GetChild(0).localPosition = new Vector3(0, 0, 0);
         inventoryScrollbar.SetActive(true);
         inventoryButton.SetActive(true);
     }
@@ -113,6 +114,7 @@ public class ButtonManager : MonoBehaviour {
     public void DisplayExchange()
     {
         exchangeMenu.SetActive(true);
+        //exchangeMenu.transform.GetChild(0).localPosition = new Vector3(0, 0, 0);
         exchangeScrollbar.SetActive(true);
         exchangeButton.SetActive(true);
         TradeManager.Instance.HideAllTradeInfo();
@@ -129,6 +131,9 @@ public class ButtonManager : MonoBehaviour {
         inventoryMenu.SetActive(!inventoryMenu.activeInHierarchy);
         inventoryScrollbar.SetActive(!inventoryScrollbar.activeInHierarchy);
         inventoryButton.SetActive(!inventoryButton.activeInHierarchy);
+        //inventoryMenu.transform.GetChild(0).localPosition = inventoryMenu.transform.localPosition;
+        //inventoryMenu.transform.GetChild(0).position = new Vector3(0, 200, 0);
+        inventoryMenu.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
     }
     public void ToggleExchange()
     {
@@ -136,15 +141,19 @@ public class ButtonManager : MonoBehaviour {
         exchangeScrollbar.SetActive(!exchangeScrollbar.activeInHierarchy);
         exchangeButton.SetActive(!exchangeButton.activeInHierarchy);
         TradeManager.Instance.HideAllTradeInfo();
+        //exchangeMenu.transform.GetChild(0).position = new Vector3(0, 0, 0);
+        exchangeMenu.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
     }
     //Only allow toggling between if not being forced to display Inventory/Exchange menu
     public void ToggleInventoryExchange()
     {
+        //Canvas.ForceUpdateCanvases();
         if(!forceInventoryExchangeDisplay)
         {
             ToggleInventory();
             ToggleExchange();
         }
+        //Canvas.ForceUpdateCanvases();
     }
 
 

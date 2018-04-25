@@ -222,6 +222,7 @@
     <Compile Include="Assets\Scripts\AutoType.cs" />
     <Compile Include="Assets\Scripts\ConfirmTrade.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
+    <Compile Include="Assets\Scripts\Drop.cs" />
     <Compile Include="Assets\Scripts\Energy.cs" />
     <Compile Include="Assets\Scripts\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\Items\Essences\BasicEssence.cs" />

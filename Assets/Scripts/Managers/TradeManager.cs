@@ -32,8 +32,18 @@ public class TradeManager : MonoBehaviour {
         CreateTrade(new Dictionary<string, int>() { { "FireGrassSeed", 1 }, { "FireLeaf", 2 } }, "WaterGrassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "WaterEssence", 2 }, { "FireEssence", 2 }, { "BasicLeaf", 1} }, "GlassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "FireEssence", 1 }, { "BasicEssence", 2 }, { "CrystalBerry", 2 } }, "EmberSeed", 2);
+        ShowDevTrades();
         HideAllTradeInfo();
         print("Finishing SetupInitialTrades");
+    }
+
+    //For quickly getting items to display
+    public void ShowDevTrades()
+    {
+        CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "FireGrassSeed", 10);
+        CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "WaterGrassSeed", 10);
+        CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "GlassSeed", 10);
+        CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "EmberSeed", 10);
     }
 
     //When clicking on a trade to either display or hide it
@@ -46,6 +56,12 @@ public class TradeManager : MonoBehaviour {
         }
         trade.confirmButton.SetActive(!trade.confirmButton.activeInHierarchy);
         trade.ToggleInfo();
+        //tradeObject.transform.GetChild(0).GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
+        //Canvas.ForceUpdateCanvases();
+        //GameObject toDestroy = Instantiate(tradePrefab);
+        //toDestroy.transform.SetParent(tradeObject.transform);
+        //toDestroy.transform.localScale = new Vector3(1, 1, 1);
+        //Destroy(toDestroy);
     }
 
     public void CreateTrade(Dictionary<string, int> needed, string receivedName, int receivedAmount)
