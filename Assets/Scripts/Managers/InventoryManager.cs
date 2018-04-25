@@ -112,14 +112,41 @@ public class InventoryManager : MonoBehaviour {
         switch (currentMenu)
         {
             case "PlantSeed":
-                print(inventoryItem.plantType);
-                boardManager.activeSeed = inventoryItem.plantType;
-                DialogueManager.Instance.DisplayMessage("Plant " + lastClickedItem + "?");
+                if(inventoryItem.plantType != "")
+                {
+                    print(inventoryItem.plantType);
+                    boardManager.activeSeed = inventoryItem.plantType;
+                    DialogueManager.Instance.DisplayMessage("Plant " + lastClickedItem + "?");
+                }
+                else
+                {
+                    currentMenu = "";
+                    buttonManager.ResetPlantButtons();
+                    boardManager.activeTile = null;
+                    boardManager.HideCursor();
+                    boardManager.activeSeed = "";
+                    DialogueManager.Instance.DisplayMessage(inventoryItem.description);
+                }
                 break;
 
             default:
-                print(inventoryItem.description);
-                DialogueManager.Instance.DisplayMessage(inventoryItem.description);
+                if(inventoryItem.plantType != "")
+                {
+                    boardManager.activeSeed = inventoryItem.plantType;
+                    DialogueManager.Instance.DisplayMessage(inventoryItem.description + "\n\nSelect an empty tile to plant " + lastClickedItem + " in!");
+                    currentMenu = "PlantSeed";
+                    boardManager.activeTile = null;
+                    boardManager.HideCursor();
+                    buttonManager.ResetPlantButtons();
+                    buttonManager.confirmButton.SetActive(true);
+                    buttonManager.backButton.SetActive(true);
+                }
+                else
+                {
+                    print(inventoryItem.description);
+                    boardManager.activeSeed = "";
+                    DialogueManager.Instance.DisplayMessage(inventoryItem.description);
+                }
                 break;
         }
     }

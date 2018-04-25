@@ -228,7 +228,7 @@ public class ButtonManager : MonoBehaviour {
     //Confirms the previously selected seed and plants it in the active tile, subtracting 1 from the user's inventory
     public void ConfirmSeed()
     {
-        if (boardManager.activeSeed == "")
+        if (boardManager.activeSeed == "" || boardManager.activeTile == null)
         {
             Back();
         }
