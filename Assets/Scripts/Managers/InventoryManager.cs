@@ -116,7 +116,8 @@ public class InventoryManager : MonoBehaviour {
                 {
                     print(inventoryItem.plantType);
                     boardManager.activeSeed = inventoryItem.plantType;
-                    DialogueManager.Instance.DisplayMessage("Plant " + lastClickedItem + "?");
+                    //DialogueManager.Instance.DisplayMessage("Plant " + lastClickedItem + "?");
+                    buttonManager.ConfirmSeed();
                 }
                 else
                 {
@@ -133,13 +134,20 @@ public class InventoryManager : MonoBehaviour {
                 if(inventoryItem.plantType != "")
                 {
                     boardManager.activeSeed = inventoryItem.plantType;
-                    DialogueManager.Instance.DisplayMessage(inventoryItem.description + "\n\nSelect an empty tile to plant " + lastClickedItem + " in!");
-                    currentMenu = "PlantSeed";
-                    boardManager.activeTile = null;
-                    boardManager.HideCursor();
-                    buttonManager.ResetPlantButtons();
-                    buttonManager.confirmButton.SetActive(true);
-                    buttonManager.backButton.SetActive(true);
+                    if (boardManager.activeTile && boardManager.activeTile.currentPlant is EmptyPlant)
+                    {
+                        buttonManager.ConfirmSeed();
+                    }
+                    else
+                    {
+                        DialogueManager.Instance.DisplayMessage(inventoryItem.description + "\n\nSelect an empty tile to plant " + lastClickedItem + " in!");
+                        currentMenu = "PlantSeed";
+                        boardManager.activeTile = null;
+                        boardManager.HideCursor();
+                        buttonManager.ResetPlantButtons();
+                        //buttonManager.confirmButton.SetActive(true);
+                        buttonManager.backButton.SetActive(true);
+                    }
                 }
                 else
                 {

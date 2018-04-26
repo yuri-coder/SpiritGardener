@@ -220,7 +220,7 @@ public class ButtonManager : MonoBehaviour {
         HideExchange();
         forceInventoryExchangeDisplay = true;
         plantButton.SetActive(false);
-        confirmButton.SetActive(true);
+        //confirmButton.SetActive(true);
         backButton.SetActive(true);
         inventoryManager.DisplayByTag("Seeds");
         inventoryManager.currentMenu = "PlantSeed";
@@ -230,7 +230,7 @@ public class ButtonManager : MonoBehaviour {
     //Confirms the previously selected seed and plants it in the active tile, subtracting 1 from the user's inventory
     public void ConfirmSeed()
     {
-        if (boardManager.activeSeed == "" || boardManager.activeTile == null)
+        if (boardManager.activeSeed == "" || boardManager.activeTile == null || !(boardManager.activeTile.currentPlant is EmptyPlant))
         {
             Back();
         }

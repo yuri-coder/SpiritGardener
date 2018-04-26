@@ -36,9 +36,15 @@ public class FieldTile : MonoBehaviour {
             case "PlantSeed":
                 if (currentPlant is EmptyPlant)
                 {
+
                     boardManager.activeTile = this;
                     boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
                     boardManager.ShowCursor();
+
+                    if (boardManager.activeSeed != "")
+                    {
+                        ButtonManager.Instance.ConfirmSeed();
+                    }
                 }
                 break;
             default:
