@@ -117,7 +117,14 @@ public class InventoryManager : MonoBehaviour {
                     print(inventoryItem.plantType);
                     boardManager.activeSeed = inventoryItem.plantType;
                     //DialogueManager.Instance.DisplayMessage("Plant " + lastClickedItem + "?");
-                    buttonManager.ConfirmSeed();
+                    if (boardManager.activeTile)
+                    {
+                        buttonManager.ConfirmSeed();
+                    }
+                    else
+                    {
+                        DialogueManager.Instance.DisplayMessage("Plant " + lastClickedItem + "?");
+                    }
                 }
                 else
                 {

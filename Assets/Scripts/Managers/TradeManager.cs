@@ -32,7 +32,7 @@ public class TradeManager : MonoBehaviour {
         CreateTrade(new Dictionary<string, int>() { { "FireGrassSeed", 1 }, { "FireLeaf", 2 } }, "WaterGrassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "WaterEssence", 2 }, { "FireEssence", 2 }, { "BasicLeaf", 1} }, "GlassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "FireEssence", 1 }, { "BasicEssence", 2 }, { "CrystalBerry", 2 } }, "EmberSeed", 2);
-        ShowDevTrades();
+        //ShowDevTrades();
         HideAllTradeInfo();
         print("Finishing SetupInitialTrades");
     }
