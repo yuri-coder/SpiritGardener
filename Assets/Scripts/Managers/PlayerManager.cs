@@ -8,11 +8,44 @@ public class PlayerManager : MonoBehaviour {
      ****************/
     public static PlayerManager Instance;
 
+
+    /*****************
+     Other Globals 
+     ****************/
+    public float wandCycleSpeed;
+    public float wandAnimationCycleSpeed;
+    public float charJumpSpeed;
+    public float charJumpAmount;
+
     /*****************
      Player Stats
      ****************/
     public int maxEnergy;
     private int curEnergy;
+
+    /*****************
+     Character Related
+     ****************/
+    public GameObject character;
+    //public Vector3 characterOriginalPosition;
+    //public Vector3 characterMoveToPosition;
+    public Sprite[] characterSprites;
+    public SpriteRenderer charRenderer;
+
+    /*****************
+     Wand Related
+     ****************/
+    public GameObject wand;
+    public Sprite[] wandSprites;
+    public SpriteRenderer wandRenderer;
+
+    /*****************
+     States/Offsets
+     ****************/
+    public ActionState currentState;
+    public int wandBase;
+    public float wandCycleTimer;
+    public float wandAnimationTimer;
 
     void Awake()
     {
@@ -22,12 +55,51 @@ public class PlayerManager : MonoBehaviour {
     void Start () {
         curEnergy = maxEnergy;
         EnergyManager.Instance.AddEnergyOrb(curEnergy);
+        wandBase = 0;
+        wandCycleTimer = 0f;
+        wandAnimationTimer = 0f;
+        //wandCycleSpeed = 1.0f;
+        //wandAnimationCycleSpeed = 2.0f;
+        //characterOriginalPosition = new Vector3(0, 0, 0);
+        SetActionState(ActionState.None);
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		
-	}
+	void Update () {  
+        wandCycleTimer += Time.deltaTime;
+        if(wandCycleTimer >= wandCycleSpeed)
+        {
+            wandCycleTimer = 0f;
+            wandBase = (wandBase + 1) % 2;
+        }
+        if(currentState != ActionState.None)
+        {
+            wandAnimationTimer += Time.deltaTime;
+            if(wandAnimationTimer >= wandAnimationCycleSpeed)
+            {
+                SetActionState(ActionState.None);
+            }
+        }
+        wandRenderer.sprite = wandSprites[wandBase + (2 * (int) currentState)];
+    }
+
+    public void SetActionState(ActionState newState)
+    {
+        currentState = newState;
+        wandAnimationTimer = 0f;
+        if(currentState == ActionState.None)
+        {
+            charRenderer.sprite = characterSprites[1];
+        }
+        else if(currentState == ActionState.Harvest || currentState == ActionState.Siphon || currentState == ActionState.Plant)
+        {
+            charRenderer.sprite = characterSprites[0];
+        }
+        else if(currentState == ActionState.Insufficient)
+        {
+            charRenderer.sprite = characterSprites[Random.Range(0, 2) + 2];
+        }
+    }
 
     //When restarting the game
     public void RestartGame()
@@ -53,6 +125,7 @@ public class PlayerManager : MonoBehaviour {
         }
         else
         {
+            SetActionState(ActionState.Insufficient);
             DialogueManager.Instance.DisplayMessage("Not enough energy remaining!");
             return false;
         }

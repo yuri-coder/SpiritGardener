@@ -139,5 +139,6 @@ public class FieldTile : MonoBehaviour {
         currentPlant.gameObject.transform.SetParent(transform);
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         currentPlant.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        PlayerManager.Instance.SetActionState(ActionState.Plant);
     }
 }

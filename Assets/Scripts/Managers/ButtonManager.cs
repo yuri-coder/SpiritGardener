@@ -184,6 +184,7 @@ public class ButtonManager : MonoBehaviour {
         print("Harvest plant!");
         if (PlayerManager.Instance.ConsumeEnergy(1))
         {
+            PlayerManager.Instance.SetActionState(ActionState.Harvest);
             DisplayInventory();
             HideExchange();
             inventoryManager.AddMultipleItems(boardManager.activeTile.HarvestPlant());
@@ -196,6 +197,7 @@ public class ButtonManager : MonoBehaviour {
         print("Siphon plant!");
         if (PlayerManager.Instance.ConsumeEnergy(1))
         {
+            PlayerManager.Instance.SetActionState(ActionState.Siphon);
             DisplayInventory();
             HideExchange();
             inventoryManager.AddMultipleItems(boardManager.activeTile.SiphonPlant());
@@ -243,6 +245,7 @@ public class ButtonManager : MonoBehaviour {
             bool canPlant = inventoryManager.SubtractItem(inventoryManager.lastClickedItem, 1, "Seeds");
             if (canPlant)
             {
+                PlayerManager.Instance.SetActionState(ActionState.Plant);
                 inventoryManager.dialogueMessage = "";
                 boardManager.activeTile.PlantFromString(boardManager.activeSeed);
                 DialogueManager.Instance.DisplayMessage(inventoryManager.dialogueMessage + "Planted " + inventoryManager.lastClickedItem + "!");

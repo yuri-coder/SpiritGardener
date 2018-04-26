@@ -219,6 +219,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\ActionState.cs" />
     <Compile Include="Assets\Scripts\AutoType.cs" />
     <Compile Include="Assets\Scripts\ConfirmTrade.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
