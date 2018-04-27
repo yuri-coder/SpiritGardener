@@ -8,6 +8,8 @@ public class TradeManager : MonoBehaviour {
     public GameObject tradeObject; //Exchange -> General
     public GameObject tradePrefab;
 
+    public bool showDevTrades;
+
     public List<GameObject> allTrades;
 
     private void Awake()
@@ -27,14 +29,13 @@ public class TradeManager : MonoBehaviour {
 
     public void SetupInitialTrades()
     {
-        print("Starting SetupInitialTrades");
         CreateTrade(new Dictionary<string, int>() { { "BasicLeaf", 1 }, { "BasicEssence", 2 } }, "FireGrassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "FireGrassSeed", 1 }, { "FireLeaf", 2 } }, "WaterGrassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "WaterEssence", 2 }, { "FireEssence", 2 }, { "BasicLeaf", 1} }, "GlassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "FireEssence", 1 }, { "BasicEssence", 2 }, { "CrystalBerry", 2 } }, "EmberSeed", 2);
-        //ShowDevTrades();
+        if (showDevTrades)
+            ShowDevTrades();
         HideAllTradeInfo();
-        print("Finishing SetupInitialTrades");
     }
 
     //For quickly getting items to display
