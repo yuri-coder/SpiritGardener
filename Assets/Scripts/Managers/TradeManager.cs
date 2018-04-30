@@ -33,6 +33,7 @@ public class TradeManager : MonoBehaviour {
         CreateTrade(new Dictionary<string, int>() { { "FireGrassSeed", 1 }, { "FireLeaf", 2 } }, "WaterGrassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "WaterEssence", 2 }, { "FireEssence", 2 }, { "BasicLeaf", 1} }, "GlassSeed", 2);
         CreateTrade(new Dictionary<string, int>() { { "FireEssence", 1 }, { "BasicEssence", 2 }, { "CrystalBerry", 2 } }, "EmberSeed", 2);
+        CreateTrade(new Dictionary<string, int>() { { "LightWisp", 1 }, { "SmokeWisp", 1 }, { "BasicEssence", 1 } }, "FaerieSeed", 2);
         if (showDevTrades)
             ShowDevTrades();
         HideAllTradeInfo();
@@ -45,6 +46,7 @@ public class TradeManager : MonoBehaviour {
         CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "WaterGrassSeed", 10);
         CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "GlassSeed", 10);
         CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "EmberSeed", 10);
+        CreateTrade(new Dictionary<string, int>() { { "BasicSeed", 0 } }, "FaerieSeed", 10);
     }
 
     //When clicking on a trade to either display or hide it
