@@ -26,6 +26,9 @@ public class AchievementManager : MonoBehaviour {
     public GameObject EndingText;
     public GameObject RestartText;
 
+    public List<Achievement> unearnedAchievements;
+    public List<Achievement> earnedAchievements;
+
 
     void Awake()
     {
@@ -43,8 +46,29 @@ public class AchievementManager : MonoBehaviour {
         harvestedAmount = 0;
         siphonedAmount = 0;
         exchangeAmount = 0;
+        unearnedAchievements = new List<Achievement>();
+        earnedAchievements = new List<Achievement>();
+        InitializeAchievements();
 	}
 	
+    private void InitializeAchievements()
+    {
+        unearnedAchievements.Add(gameObject.AddComponent<Harvest10Achievement>());
+    }
+
+    private void CheckForAchievements()
+    {
+        for(int i = unearnedAchievements.Count - 1; i >= 0; i--)
+        {
+            Achievement achievement = unearnedAchievements[i];
+            if (achievement.TryEarnAchievement())
+            {
+                earnedAchievements.Add(achievement);
+                unearnedAchievements.Remove(achievement);
+            }
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
         if (Input.GetKeyDown(KeyCode.R))
@@ -52,11 +76,14 @@ public class AchievementManager : MonoBehaviour {
             RestartGame();
             BoardManager.Instance.RestartGame();
         }
+        CheckForAchievements();
     }
 
     //Called when restarting the game
     public void RestartGame()
     {
+        unearnedAchievements.Clear();
+        earnedAchievements.Clear();
         Start();
     }
 
