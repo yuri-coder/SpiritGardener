@@ -26,7 +26,14 @@ public class DialogueManager : MonoBehaviour {
 		
 	}
 
-    public void DisplayDialogue() { }
+    public void DisplayDialogue(ScriptableDialogue dialogue)
+    {
+        StopAllCoroutines();
+        speakerDialogue.GetComponent<Text>().text = "";
+        StartCoroutine(speakerDialogue.GetComponent<AutoType>().TypeText(dialogue.speaker));
+        mainDialogue.GetComponent<Text>().text = "";
+        StartCoroutine(mainDialogue.GetComponent<AutoType>().TypeText(dialogue.dialogue));
+    }
 
     public void DisplayMessage(string message)
     {
@@ -35,6 +42,11 @@ public class DialogueManager : MonoBehaviour {
         print("String is : " + message);
         mainDialogue.GetComponent<Text>().text = "";
         StartCoroutine(mainDialogue.GetComponent<AutoType>().TypeText(message));
+        if(speakerDialogue.GetComponent<Text>().text != "System")
+        {
+            speakerDialogue.GetComponent<Text>().text = "";
+            StartCoroutine(speakerDialogue.GetComponent<AutoType>().TypeText("System"));
+        }
     }
 
 }

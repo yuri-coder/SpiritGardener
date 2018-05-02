@@ -10,6 +10,7 @@ public class Harvest10Achievement : Achievement {
         achievementDescription = "Harvest 10 plants!";
         achievementPoints = 10;
         completed = false;
+        scriptableDialogue = Resources.Load<ScriptableDialogue>("Dialogues/TestDialogue");
     }
 	
 	// Update is called once per frame

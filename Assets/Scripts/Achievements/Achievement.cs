@@ -8,13 +8,15 @@ public abstract class Achievement : MonoBehaviour{
     public string achievementName;
     public string achievementDescription;
     public int achievementPoints;
+    public ScriptableDialogue scriptableDialogue;
 
     //Returns true if the achievement was earned, otherwise returns false
     public abstract bool TryEarnAchievement();
 
     public void DisplayEarnedMessage()
     {
-        DialogueManager.Instance.DisplayMessage("Achievement " + achievementName + " unlocked!\n" + achievementDescription);
+        //DialogueManager.Instance.DisplayMessage("Achievement " + achievementName + " unlocked!\n" + achievementDescription);
+        DialogueManager.Instance.DisplayDialogue(scriptableDialogue);
     }
 
 
