@@ -260,6 +260,7 @@
     <Compile Include="Assets\Scripts\Managers\EnergyManager.cs" />
     <Compile Include="Assets\Scripts\Managers\InventoryManager.cs" />
     <Compile Include="Assets\Scripts\Managers\PlayerManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\RadialUIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\TradeManager.cs" />
     <Compile Include="Assets\Scripts\Plants\BeginnerGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\EmberFlower.cs" />

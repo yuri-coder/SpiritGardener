@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class FieldTile : MonoBehaviour {
+public class FieldTile : MonoBehaviour, IPointerClickHandler {
 
     public Plant currentPlant; 
     public BoxCollider2D boxCollider;
@@ -27,57 +28,64 @@ public class FieldTile : MonoBehaviour {
 	void Update () {}
 
     //Display information about the plant on click
-    private void OnMouseDown()
-    {
-        BoardManager boardManager = gameObject.GetComponentInParent<BoardManager>();
-        print("Clicked FieldTile at " + transform.position);
-        switch (InventoryManager.Instance.currentMenu)
-        {
-            case "PlantSeed":
-                if (currentPlant is EmptyPlant)
-                {
+    //private void OnMouseUpAsButton()
+    //{
+        
+    //    if (!BoardManager.Instance.performingAction)
+    //    {
+    //        RadialUIManager.Instance.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+    //        RadialUIManager.Instance.gameObject.SetActive(true);
+    //        BoardManager boardManager = gameObject.GetComponentInParent<BoardManager>();
+    //        print("Clicked FieldTile at " + transform.position);
+    //        switch (InventoryManager.Instance.currentMenu)
+    //        {
+    //            case "PlantSeed":
+    //                if (currentPlant is EmptyPlant)
+    //                {
 
-                    boardManager.activeTile = this;
-                    boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
-                    boardManager.ShowCursor();
+    //                    boardManager.activeTile = this;
+    //                    boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
+    //                    boardManager.ShowCursor();
 
-                    if (boardManager.activeSeed != "")
-                    {
-                        ButtonManager.Instance.ConfirmSeed();
-                    }
-                }
-                break;
-            default:
-                boardManager.activeTile = this;
-                boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
-                boardManager.ShowCursor();
-                if (currentPlant is EmptyPlant)
-                {
-                    print("Empty plant!");
-                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
-                    bm.ResetPlantButtons();
-                    bm.EnableButton(bm.plantButton);
-                }
-                else if (currentPlant.IsFullyGrown())
-                {
-                    print("Fully grown!");
-                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
-                    bm.ResetPlantButtons();
-                    bm.EnableButton(bm.harvestButton);
-                    bm.EnableButton(bm.siphonButton);
-                    bm.EnableButton(bm.checkButton);
-                }
-                else
-                {
-                    print("Not fully grown!");
-                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
-                    bm.ResetPlantButtons();
-                    bm.EnableButton(bm.removeButton);
-                    bm.EnableButton(bm.checkButton);
-                }
-                break;
-        }     
-    }
+    //                    if (boardManager.activeSeed != "")
+    //                    {
+    //                        ButtonManager.Instance.ConfirmSeed();
+    //                    }
+    //                }
+    //                break;
+    //            default:
+    //                boardManager.activeTile = this;
+    //                boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
+    //                boardManager.ShowCursor();
+    //                if (currentPlant is EmptyPlant)
+    //                {
+    //                    print("Empty plant!");
+    //                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+    //                    bm.ResetPlantButtons();
+    //                    bm.EnableButton(bm.plantButton);
+    //                }
+    //                else if (currentPlant.IsFullyGrown())
+    //                {
+    //                    print("Fully grown!");
+    //                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+    //                    bm.ResetPlantButtons();
+    //                    bm.EnableButton(bm.harvestButton);
+    //                    bm.EnableButton(bm.siphonButton);
+    //                    bm.EnableButton(bm.checkButton);
+    //                }
+    //                else
+    //                {
+    //                    print("Not fully grown!");
+    //                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+    //                    bm.ResetPlantButtons();
+    //                    bm.EnableButton(bm.removeButton);
+    //                    bm.EnableButton(bm.checkButton);
+    //                }
+    //                break;
+    //        }
+    //    }
+        
+    //}
 
     //Have the current plant perform its StepUpdate
     public void StepUpdate()
@@ -146,5 +154,72 @@ public class FieldTile : MonoBehaviour {
         currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
         currentPlant.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
         PlayerManager.Instance.SetActionState(ActionState.Plant);
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        //RadialUIManager.Instance.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+        //RadialUIManager.Instance.gameObject.SetActive(true);
+        BoardManager boardManager = gameObject.GetComponentInParent<BoardManager>();
+        print("Clicked FieldTile at " + transform.position);
+        switch (InventoryManager.Instance.currentMenu)
+        {
+            case "PlantSeed":
+                if (currentPlant is EmptyPlant)
+                {
+
+                    boardManager.activeTile = this;
+                    boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
+                    boardManager.ShowCursor();
+
+                    if (boardManager.activeSeed != "")
+                    {
+                        ButtonManager.Instance.ConfirmSeed();
+                    }
+                }
+                break;
+            default:
+                if(boardManager.activeTile == this)
+                {
+                    RadialUIManager.Instance.gameObject.SetActive(false);
+                    boardManager.activeTile = null;
+                    boardManager.HideCursor();
+                    return;
+                }
+                RadialUIManager.Instance.transform.position = Camera.main.WorldToScreenPoint(transform.position);
+                RadialUIManager.Instance.gameObject.SetActive(true);
+                RadialUIManager.Instance.Activate();
+
+                boardManager.activeTile = this;
+                //boardManager.cursor.transform.position = transform.position;
+                boardManager.cursor.GetComponent<Cursor>().MoveToLocation(transform.position);
+                //RadialUIManager.Instance.GetComponent<Cursor>().MoveToLocation(Camera.main.WorldToScreenPoint(transform.position));
+                boardManager.ShowCursor();
+                if (currentPlant is EmptyPlant)
+                {
+                    //print("Empty plant!");
+                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+                    bm.ResetPlantButtons();
+                    bm.EnableButton(bm.plantButton);
+                }
+                else if (currentPlant.IsFullyGrown())
+                {
+                    //print("Fully grown!");
+                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+                    bm.ResetPlantButtons();
+                    bm.EnableButton(bm.harvestButton);
+                    bm.EnableButton(bm.siphonButton);
+                    bm.EnableButton(bm.checkButton);
+                }
+                else
+                {
+                    //print("Not fully grown!");
+                    ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+                    bm.ResetPlantButtons();
+                    bm.EnableButton(bm.removeButton);
+                    bm.EnableButton(bm.checkButton);
+                }
+                break;
+        }
     }
 }

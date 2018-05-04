@@ -29,6 +29,7 @@ public class BoardManager : MonoBehaviour {
      ****************/
     public FieldTile activeTile;
     public string activeSeed;
+    public bool performingAction;
 
     void Awake()
     {
@@ -49,6 +50,16 @@ public class BoardManager : MonoBehaviour {
             AchievementManager.Instance.RestartGame();
             RestartGame();
         }
+    }
+
+    void LateUpdate()
+    {
+        if (performingAction)
+        {
+            performingAction = false;
+            print("Set BoardManager.Instance.performingAction to true");
+        }
+
     }
 
     //Sets up the GameBoard grid with empty FieldTiles
