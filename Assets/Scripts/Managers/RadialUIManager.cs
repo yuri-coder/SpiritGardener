@@ -7,9 +7,9 @@ public class RadialUIManager : MonoBehaviour {
 
     public static RadialUIManager Instance;
 
-    public GameObject PlantButton, HarvestButton, SiphonButton, CheckButton, RemoveButton, GrowthStage;
+    public GameplayButton PlantButton, HarvestButton, SiphonButton, CheckButton, RemoveButton, GrowthStage;
     public Text GrowthStageText;
-    public List<GameObject> ButtonList;
+    public List<GameplayButton> ButtonList;
 
     void Awake()
     {
@@ -40,10 +40,56 @@ public class RadialUIManager : MonoBehaviour {
     //Used when setting the radil ui to be visible
     public void Activate()
     {
-        foreach(GameObject button in ButtonList)
+        gameObject.SetActive(true);
+        foreach(GameplayButton button in ButtonList)
         {
-            button.GetComponent<GameplayButton>().image.color = new Color32(255, 255, 255, 0);
+            button.image.color = new Color32(255, 255, 255, 0);
         }
+    }
+
+    public void DisableAllButtons()
+    {
+        foreach (GameplayButton button in ButtonList)
+        {
+            button.SetEnabled(false);
+        }
+    }
+
+    public void EnableAllButtons()
+    {
+        foreach (GameplayButton button in ButtonList)
+        {
+            button.SetEnabled(true);
+        }
+    }
+
+    //For when there is no plant in the square
+    public void EmptyPlantInterface()
+    {
+        DisableAllButtons();
+        PlantButton.SetEnabled(true);
+        GrowthStage.gameObject.SetActive(false);
+    }
+
+    //For when a plant is still growing
+    public void NotFullyGrownInterface()
+    {
+        DisableAllButtons();
+        CheckButton.SetEnabled(true);
+        RemoveButton.SetEnabled(true);
+        GrowthStage.gameObject.SetActive(true);
+        GrowthStage.SetEnabled(true);
+    }
+
+    //For when a plant is fully grown
+    public void FullyGrownInterface()
+    {
+        DisableAllButtons();
+        HarvestButton.SetEnabled(true);
+        SiphonButton.SetEnabled(true);
+        CheckButton.SetEnabled(true);
+        GrowthStage.gameObject.SetActive(true);
+        GrowthStage.SetEnabled(true);
     }
 
 }

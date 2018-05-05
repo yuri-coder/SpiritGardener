@@ -14,6 +14,8 @@ public class GameplayButton : MonoBehaviour {
     public bool hovered;
     public GameplayButtonActions gameplayAction;
 
+    public TextFader tooltip;
+
 
     //public Image[] buttonImages;
 
@@ -26,7 +28,7 @@ public class GameplayButton : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        SetEnabled(disabled);
+        //SetEnabled(disabled);
 	}
 	
 	// Update is called once per frame
@@ -34,21 +36,27 @@ public class GameplayButton : MonoBehaviour {
 		image.color = new Color(image.color.r, image.color.g, image.color.b, image.color.a + (2.5f * Time.deltaTime));
     }
 
+    public void OnEnable()
+    {
+        tooltip.SetInvisible();
+    }
 
     public void ButtonEnterHover()
     {
-        if(!disabled)
+        if (!disabled)
             gameObject.GetComponent<Image>().sprite = buttonSprites[2];
         else
             gameObject.GetComponent<Image>().sprite = buttonSprites[0];
+        tooltip.FadeIn();
     }
 
     public void ButtonExitHover()
     {
-        if(!disabled)
+        if (!disabled)
             gameObject.GetComponent<Image>().sprite = buttonSprites[1];
         else
             gameObject.GetComponent<Image>().sprite = buttonSprites[0];
+        tooltip.FadeOut();
     }
 
     //public void ButtonClick(BaseEventData bed)
@@ -75,17 +83,46 @@ public class GameplayButton : MonoBehaviour {
 
     public void ButtonClick()
     {
-        print("Before setting BoardManager.Instance.performingAction to true");
+        //print("Before setting BoardManager.Instance.performingAction to true");
         //BoardManager.Instance.performingAction = true;
-        print("Set BoardManager.Instance.performingAction to true");
-        gameObject.GetComponent<Image>().sprite = buttonSprites[2];
-        parent.SetActive(false);
+        //print("Set BoardManager.Instance.performingAction to true");
+        if (!disabled)
+        {
+            print("!disabled");
+            switch (gameplayAction)
+            {
+                case GameplayButtonActions.Check:
+                    //print("Check");
+                    ButtonManager.Instance.CheckPlant();
+                    break;
+                case GameplayButtonActions.Harvest:
+                    //print("Harvest");
+                    ButtonManager.Instance.HarvestPlant();
+                    break;
+                case GameplayButtonActions.Siphon:
+                    //print("Siphon");
+                    ButtonManager.Instance.SiphonPlant();
+                    break;
+                case GameplayButtonActions.Remove:
+                    //print("Remove");
+                    ButtonManager.Instance.RemovePlant();
+                    break;
+                case GameplayButtonActions.Plant:
+                    //print("Plant");
+                    ButtonManager.Instance.PlantSeed();
+                    parent.SetActive(false);
+                    break;
+                default:
+                    print("Default");
+                    break;
+            }
+        }
     }
 
 
     public void SetEnabled(bool status)
     {
-        disabled = status;
+        disabled = !status;
         if (disabled)
         {
             gameObject.GetComponent<Image>().sprite = buttonSprites[0];

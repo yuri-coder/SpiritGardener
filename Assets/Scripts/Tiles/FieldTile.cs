@@ -187,7 +187,7 @@ public class FieldTile : MonoBehaviour, IPointerClickHandler {
                     return;
                 }
                 RadialUIManager.Instance.transform.position = Camera.main.WorldToScreenPoint(transform.position);
-                RadialUIManager.Instance.gameObject.SetActive(true);
+                //RadialUIManager.Instance.gameObject.SetActive(true);
                 RadialUIManager.Instance.Activate();
 
                 boardManager.activeTile = this;
@@ -199,25 +199,36 @@ public class FieldTile : MonoBehaviour, IPointerClickHandler {
                 {
                     //print("Empty plant!");
                     ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+
+                    RadialUIManager.Instance.EmptyPlantInterface();
+
                     bm.ResetPlantButtons();
-                    bm.EnableButton(bm.plantButton);
+                    //bm.EnableButton(bm.plantButton);
                 }
                 else if (currentPlant.IsFullyGrown())
                 {
                     //print("Fully grown!");
                     ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+
+                    RadialUIManager.Instance.FullyGrownInterface();
+                    RadialUIManager.Instance.SetGrowthStageText(currentPlant.currentGrowthStage, currentPlant.maxGrowthStage);
+
                     bm.ResetPlantButtons();
-                    bm.EnableButton(bm.harvestButton);
-                    bm.EnableButton(bm.siphonButton);
-                    bm.EnableButton(bm.checkButton);
+                    //bm.EnableButton(bm.harvestButton);
+                    //bm.EnableButton(bm.siphonButton);
+                    //bm.EnableButton(bm.checkButton);
                 }
                 else
                 {
                     //print("Not fully grown!");
                     ButtonManager bm = GameObject.Find("ButtonManager").GetComponent<ButtonManager>();
+
+                    RadialUIManager.Instance.NotFullyGrownInterface();
+                    RadialUIManager.Instance.SetGrowthStageText(currentPlant.currentGrowthStage, currentPlant.maxGrowthStage);
+
                     bm.ResetPlantButtons();
-                    bm.EnableButton(bm.removeButton);
-                    bm.EnableButton(bm.checkButton);
+                    //bm.EnableButton(bm.removeButton);
+                    //bm.EnableButton(bm.checkButton);
                 }
                 break;
         }

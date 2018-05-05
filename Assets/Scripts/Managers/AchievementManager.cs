@@ -53,7 +53,7 @@ public class AchievementManager : MonoBehaviour {
 	
     private void InitializeAchievements()
     {
-        unearnedAchievements.Add(gameObject.AddComponent<Harvest10Achievement>());
+        //unearnedAchievements.Add(gameObject.AddComponent<Harvest10Achievement>());
     }
 
     private void CheckForAchievements()

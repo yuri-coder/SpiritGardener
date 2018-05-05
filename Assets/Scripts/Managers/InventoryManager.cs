@@ -154,6 +154,7 @@ public class InventoryManager : MonoBehaviour {
                         buttonManager.ResetPlantButtons();
                         //buttonManager.confirmButton.SetActive(true);
                         buttonManager.backButton.SetActive(true);
+                        RadialUIManager.Instance.gameObject.SetActive(false);
                     }
                 }
                 else

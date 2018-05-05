@@ -7,7 +7,7 @@ public class Plant : MonoBehaviour {
     public string plantName, description;
     public Dictionary<Item, int> siphonAmount;
     public Dictionary<Item, int> harvestAmount;
-    protected int currentGrowthStage;
+    public int currentGrowthStage;
     public SpriteRenderer spriteRenderer;
     public Sprite[] spriteList;
 
