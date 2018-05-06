@@ -31,4 +31,14 @@ public class EmptyPlant : Plant {
 	void Update () {
 		
 	}
+
+    public override void UpdateHarvestables()
+    {
+
+    }
+
+    public override void UpdateSiphonables()
+    {
+
+    }
 }

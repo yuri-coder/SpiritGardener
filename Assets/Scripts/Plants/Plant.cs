@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plant : MonoBehaviour {
+public abstract class Plant : MonoBehaviour {
     public int plantID, maxGrowthStage;
     public string plantName, description;
     public Dictionary<Item, int> siphonAmount;
@@ -31,19 +31,21 @@ public class Plant : MonoBehaviour {
     //Return the Items Siphoned and their amounts
     public virtual Dictionary<Item, int> Siphon()
     {
+        UpdateSiphonables();
         return siphonAmount;
     }
 
     //Return the Items Harvested and their amounts
     public virtual Dictionary<Item, int> Harvest()
     {
+        UpdateHarvestables();
         return harvestAmount;
     }
 
     //Return the current/max growth stage of the plant
     public virtual string Check()
     {
-        return plantName + " - Growth Stage " + currentGrowthStage + "/" + maxGrowthStage + "\n" + description;
+        return plantName + " - " + description;
     }
 
     //Return the Items harvested when this plant is destroyed
@@ -64,4 +66,8 @@ public class Plant : MonoBehaviour {
             print("The plant is at the max growth stage! " + currentGrowthStage + "/" + maxGrowthStage);
         }
     }
+
+    public abstract void UpdateHarvestables();
+
+    public abstract void UpdateSiphonables();
 }
