@@ -50,6 +50,9 @@ public class BoardManager : MonoBehaviour {
             AchievementManager.Instance.RestartGame();
             RestartGame();
         }
+        if (Input.GetKey("escape"))
+            Application.Quit();
+
     }
 
     void LateUpdate()

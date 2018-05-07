@@ -7436,7 +7436,7 @@ MonoBehaviour:
   tradeObject: {fileID: 1928055382}
   tradePrefab: {fileID: 1562338010058116, guid: 1a716b5f869780b49925462d797751e9,
     type: 2}
-  showDevTrades: 0
+  showDevTrades: 1
   allTrades: []
 --- !u!4 &1896076129
 Transform:
