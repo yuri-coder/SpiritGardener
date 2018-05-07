@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ButtonManager : MonoBehaviour {
 
@@ -98,6 +99,22 @@ public class ButtonManager : MonoBehaviour {
     /*****************
      Inventory/Exchange UI related toggles
      ****************/
+    public void InventoryClick(BaseEventData data)
+    {
+        PointerEventData ped = (PointerEventData) data;
+        //Left Mouse Click
+        if (ped.pointerId == -1)
+        {
+            ToggleInventoryExchange();
+        }
+        //Right Mouse Click
+        else if (ped.pointerId == -2)
+        {
+            inventoryManager.ToggleZeroItems();
+        }
+    }
+
+
     public void DisplayInventory()
     {
         inventoryMenu.SetActive(true);

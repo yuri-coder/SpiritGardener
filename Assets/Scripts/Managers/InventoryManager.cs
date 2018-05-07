@@ -44,6 +44,7 @@ public class InventoryManager : MonoBehaviour {
     public Text turnsText;
     public string dialogueMessage;
     public int neededPoints;
+    public bool hideZero;
 
 
     // Use this for initialization
@@ -64,6 +65,7 @@ public class InventoryManager : MonoBehaviour {
         points = 0;
         //neededPoints = 10;
         turns = 0;
+        hideZero = false;
 
         UpdatePoints();
         IncreaseTurn(turns);
@@ -94,6 +96,11 @@ public class InventoryManager : MonoBehaviour {
     void Update () {
 		
 	}
+
+
+
+
+
 
 
     //When clicking on an item in the inventory, perform different actions based on the current menu
@@ -301,6 +308,7 @@ public class InventoryManager : MonoBehaviour {
     //Set the amount of an item based on an Item object and amount
     private void SetItemAmount(Item item, int amount)
     {
+        print("hideZero = " + hideZero);
         foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
             if (itemContainer.GetChild(1).GetComponent<Text>().text.Equals(item.itemName))
@@ -310,11 +318,16 @@ public class InventoryManager : MonoBehaviour {
                 {
                     itemContainer.GetChild(1).GetComponent<Text>().color = insufficientColor;
                     itemContainer.GetChild(2).GetComponent<Text>().color = insufficientColor;
+                    if (hideZero)
+                    {
+                        itemContainer.gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
                     itemContainer.GetChild(1).GetComponent<Text>().color = sufficientColor;
                     itemContainer.GetChild(2).GetComponent<Text>().color = sufficientColor;
+                    itemContainer.gameObject.SetActive(true);
                 }
                 break;
             }
@@ -324,6 +337,7 @@ public class InventoryManager : MonoBehaviour {
     //Set the amount of an item based on a string of the object's name and amount
     private void SetItemAmount(string item, int amount)
     {
+        print("hideZero = " + hideZero);
         foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
             if (itemContainer.GetChild(1).GetComponent<Text>().text.Equals(item))
@@ -333,11 +347,16 @@ public class InventoryManager : MonoBehaviour {
                 {
                     itemContainer.GetChild(1).GetComponent<Text>().color = insufficientColor;
                     itemContainer.GetChild(2).GetComponent<Text>().color = insufficientColor;
+                    if (hideZero)
+                    {
+                        itemContainer.gameObject.SetActive(false);
+                    }
                 }
                 else
                 {
                     itemContainer.GetChild(1).GetComponent<Text>().color = sufficientColor;
                     itemContainer.GetChild(2).GetComponent<Text>().color = sufficientColor;
+                    itemContainer.gameObject.SetActive(true);
                 }
                 break;
             }
@@ -377,7 +396,24 @@ public class InventoryManager : MonoBehaviour {
     {
         foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
-            itemContainer.gameObject.SetActive(itemContainer.gameObject.CompareTag(tag));
+            if (itemContainer.gameObject.CompareTag(tag))
+            {
+                if (hideZero)
+                {
+                    if (itemContainer.GetChild(2).GetComponent<Text>().color == insufficientColor)
+                    {
+                        itemContainer.gameObject.SetActive(false);
+                    }
+                }
+                else
+                {
+                    itemContainer.gameObject.SetActive(true);
+                }
+            }
+            else
+            {
+                itemContainer.gameObject.SetActive(false);
+            }
         }
     }
 
@@ -387,7 +423,33 @@ public class InventoryManager : MonoBehaviour {
 
         foreach (Transform itemContainer in inventoryObject.transform.Find("General").transform)
         {
-            itemContainer.gameObject.SetActive(true);
+            if (hideZero)
+            {
+                if (itemContainer.GetChild(2).GetComponent<Text>().color == insufficientColor)
+                {
+                    itemContainer.gameObject.SetActive(false);
+                }
+            }
+            else
+            {
+                itemContainer.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    //Toggles hiding/showing items that are 0 in the inventory
+    public void ToggleZeroItems()
+    {
+        print("In toggle zero items");
+        if (!hideZero)
+        {
+            hideZero = true;
+            DisplayAllItems();
+        }
+        else
+        {
+            hideZero = false;
+            DisplayAllItems();
         }
     }
 
