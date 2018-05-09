@@ -245,6 +245,7 @@
     <Compile Include="Assets\Scripts\Items\Fruits\SmoulderingPetal.cs" />
     <Compile Include="Assets\Scripts\Items\Fruits\WaterLeaf.cs" />
     <Compile Include="Assets\Scripts\Items\Item.cs" />
+    <Compile Include="Assets\Scripts\Items\ItemTypes.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\BasicSeed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\EmberSeed.cs" />
     <Compile Include="Assets\Scripts\Items\Seeds\FaerieSeed.cs" />
@@ -269,6 +270,7 @@
     <Compile Include="Assets\Scripts\Plants\FireGrass.cs" />
     <Compile Include="Assets\Scripts\Plants\GlassBush.cs" />
     <Compile Include="Assets\Scripts\Plants\Plant.cs" />
+    <Compile Include="Assets\Scripts\Plants\PlantTypes.cs" />
     <Compile Include="Assets\Scripts\Plants\WaterGrass.cs" />
     <Compile Include="Assets\Scripts\TextFader.cs" />
     <Compile Include="Assets\Scripts\Tiles\FieldTile.cs" />
