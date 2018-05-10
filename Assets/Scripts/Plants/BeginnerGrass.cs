@@ -12,6 +12,11 @@ public class BeginnerGrass : Plant {
     public static DropTable goodDropTable;
     public static DropTable perfectDropTable;
 
+    [RuntimeInitializeOnLoadMethod]
+    static void InitializeDropTables()
+    {
+        averageDropTable = new DropTable();
+    }
 
     private void Awake()
     {
