@@ -7,6 +7,12 @@ public class BeginnerGrass : Plant {
     public static Dictionary<string, bool> Harvestables = new Dictionary<string, bool>() { { "Basic Leaf", false} };
     public static Dictionary<string, bool> Siphonables = new Dictionary<string, bool>() { { "Basic Essence", false } };
 
+
+    public static DropTable averageDropTable;
+    public static DropTable goodDropTable;
+    public static DropTable perfectDropTable;
+
+
     private void Awake()
     {
         currentGrowthStage = 1;

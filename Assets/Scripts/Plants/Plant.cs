@@ -70,4 +70,5 @@ public abstract class Plant : MonoBehaviour {
     public abstract void UpdateHarvestables();
 
     public abstract void UpdateSiphonables();
+
 }

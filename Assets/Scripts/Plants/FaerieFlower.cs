@@ -19,7 +19,7 @@ public class FaerieFlower : Plant
         Drop shared2 = new Drop("LightWisp", Random.Range(2, 5));
         Drop sharedDrop = InventoryManager.Instance.SharedChanceRoll(new Dictionary<Drop, int>() { { shared1, 15 }, { shared2, 85 } }, 100);
 
-        siphonAmount = new Dictionary<Item, int>() { { (Item)gameObject.AddComponent(System.Type.GetType(sharedDrop.name)), sharedDrop.amt } };
+        siphonAmount = new Dictionary<Item, int>() { { (Item)gameObject.AddComponent(System.Type.GetType(sharedDrop.name)), sharedDrop.maxAmt } };
         harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<ImbuedPetal>(), 2 + Random.Range(0, 3) }, { gameObject.AddComponent<FaerieSeed>(), 0 + InventoryManager.Instance.ChanceRoll(10, 100) * 1 } };
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteList = Resources.LoadAll<Sprite>("Sprites/Plants/FaerieFlower");

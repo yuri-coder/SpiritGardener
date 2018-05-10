@@ -19,7 +19,7 @@ public class EmberFlower : Plant
         Drop shared2 = new Drop("SmokeWisp", Random.Range(1, 3));
         Drop sharedDrop = InventoryManager.Instance.SharedChanceRoll(new Dictionary<Drop, int>() { { shared1, 25 }, { shared2, 75 } }, 100);
 
-        siphonAmount = new Dictionary<Item, int>() { {(Item) gameObject.AddComponent(System.Type.GetType(sharedDrop.name)), sharedDrop.amt } };
+        siphonAmount = new Dictionary<Item, int>() { {(Item) gameObject.AddComponent(System.Type.GetType(sharedDrop.name)), sharedDrop.maxAmt } };
         harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<SmoulderingPetal>(), 2 + Random.Range(0, 2) }, { gameObject.AddComponent<EmberSeed>(), 0 + InventoryManager.Instance.ChanceRoll(10, 100) * 1 } };
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
         spriteList = Resources.LoadAll<Sprite>("Sprites/Plants/EmberFlower");

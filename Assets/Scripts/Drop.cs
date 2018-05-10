@@ -5,18 +5,28 @@ using UnityEngine;
 public class Drop{
 
     public string name;
-    public int amt;
+    public int maxAmt;
+    public int minAmt;
 
-    public Drop(string itemName, int itemAmt)
+    public Drop(string itemName, int max)
     {
         name = itemName;
-        amt = itemAmt;
+        maxAmt = max;
+        minAmt = max;
     }
 
     public Drop()
     {
         name = "BasicSeed";
-        amt = 0;
+        maxAmt = 0;
+        minAmt = 0;
+    }
+
+    public Drop(string itemName, int min, int max)
+    {
+        name = itemName;
+        minAmt = min;
+        maxAmt = max;
     }
 
 }
