@@ -20,7 +20,4 @@ public class DropTable {
         }
         return drops;
     }
-
-    
-
 }

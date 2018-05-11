@@ -16,6 +16,11 @@ public class BeginnerGrass : Plant {
     static void InitializeDropTables()
     {
         averageDropTable = new DropTable();
+        goodDropTable = new DropTable();
+        perfectDropTable = new DropTable();
+        /*
+         * initialize drop tables with the items they should have  
+         */
     }
 
     private void Awake()
@@ -28,6 +33,10 @@ public class BeginnerGrass : Plant {
         siphonAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicEssence>(), 1 + Random.Range(0, 2)}};
         harvestAmount = new Dictionary<Item, int>() { { gameObject.AddComponent<BasicLeaf>(), 1 + Random.Range(0, 2)}};
         spriteRenderer = gameObject.AddComponent<SpriteRenderer>();
+        if (!spriteRenderer)
+        {
+            spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        }
         spriteList = Resources.LoadAll<Sprite>("Sprites/Plants/BeginnerGrass");
         spriteRenderer.sprite = spriteList[0];
         spriteRenderer.sortingOrder = 1;

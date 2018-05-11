@@ -22,6 +22,12 @@ public abstract class Plant : MonoBehaviour {
 		
 	}
 
+    public string GetStorableString()
+    {
+        string toReturn = plantID + "," + currentGrowthStage;
+        return toReturn;
+    }
+
     //Return if plant is fully grown
     public virtual bool IsFullyGrown()
     {
@@ -71,4 +77,25 @@ public abstract class Plant : MonoBehaviour {
 
     public abstract void UpdateSiphonables();
 
+}
+
+
+public class SerializablePlant
+{
+
+
+
+    public int plantID;
+    public int currentGrowthStage;
+
+    public SerializablePlant()
+    {
+
+    }
+
+    public SerializablePlant(Plant plant)
+    {
+        plantID = plant.plantID;
+        currentGrowthStage = plant.currentGrowthStage;
+    }
 }

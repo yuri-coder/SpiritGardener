@@ -21,7 +21,7 @@ public class PlayerManager : MonoBehaviour {
      Player Stats
      ****************/
     public int maxEnergy;
-    private int curEnergy;
+    public int curEnergy;
 
     /*****************
      Character Related

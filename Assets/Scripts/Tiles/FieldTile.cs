@@ -21,6 +21,13 @@ public class FieldTile : MonoBehaviour, IPointerClickHandler {
         currentPlant.gameObject.GetComponent<SpriteRenderer>().sortingOrder = 2;
         animator = fieldTileAnimator.GetComponent<Animator>();
     }
+
+    public void ResetTile()
+    {
+        currentPlant = new GameObject("Plant").AddComponent<EmptyPlant>();
+        currentPlant.transform.SetParent(transform);
+        currentPlant.gameObject.transform.localPosition = new Vector3(0, 0, 0);
+    }
     // Use this for initialization
     void Start () {}
 	
